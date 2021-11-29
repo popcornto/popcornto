@@ -1,6 +1,6 @@
 public class Testumgebung
 {
-    public static void main( String args[] )
+   /* public static void main( String args[] )
     {
         // Beispiel 1
         Fraction[] arr1 = { new Fraction(1,1), new Fraction(1,2), new Fraction(1,3), new Fraction(1,4), new Fraction(1,5), new Fraction(1,6), new Fraction(1,7) };
@@ -30,7 +30,7 @@ public class Testumgebung
         Fraction[] arr7 = {};
         System.out.println( Testat.apply( arr7,  new Fraction( 4, 11 ) ).toString() );
         
-    }
+    }*/
     
 }
 

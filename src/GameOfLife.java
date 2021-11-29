@@ -1,5 +1,5 @@
 public class GameOfLife {
-    public boolean[][] population;
+    /*public boolean[][] population;
     public boolean lebt= true;
     public boolean tot= false;
 
@@ -41,6 +41,6 @@ public GameOfLife(){
             } else if() 
         }
     }
-
+*/
 
 }
