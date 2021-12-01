@@ -65,9 +65,22 @@ public class Rekusion {
         d++;
         return countPositivesLimited(arr, d,t);
     }
+public static int maximum(int[] arr, int i){
 
+        if(i <= 0 ){
+            return result;
+        }
+        if (result >= arr[i-1] && i-1 >= 0){
+            result = arr[i];
+        }
+        if (result< arr[i-1] && i-1 >= 0){
+            result = arr[i-1];
+        }
+
+        return maximum(arr, i-1);
+}
     public static void main(String[] args) {
-        int [] Arr = {1, -2, 3, 4, 3, 4, 3, 4,1,2,3,4};
+        int [] Arr = {1, -2, 3, 4};
         int var = fakul(10);
         int var1 = DigitSum(15);
         //System.out.println(var);
@@ -76,6 +89,6 @@ public class Rekusion {
         //System.out.println(sumNegatives(new int[]{-1,-2,-3,-4},4 ));
        // System.out.println(countPositives(new int[]{1, -2, -3, 4, 3, 4, 3, 4}, 4));
         //System.out.println(countPositivesLimited(new int[]{1, -2, 3, 4, 3, 4, 3, 4,1,2,3,4}, 0,11));
-        System.out.println();
+        System.out.println(maximum(Arr,3));
     }
 }
