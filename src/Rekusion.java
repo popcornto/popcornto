@@ -20,11 +20,18 @@ return n*fakul(n-1);
 
         return n%count + DigitSum(n)%count;
     }
+    public static int power(int a, int n){
+        if (n <= 1){
+            return a;
+        }
+       return  a + power(a,n-1);
+    }
 
     public static void main(String[] args) {
         int var = fakul(10);
         int var1  = DigitSum(15);
         System.out.println(var);
         System.out.println(var1);
+        System.out.println(power(2,2));
     }
 }

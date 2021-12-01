@@ -30,4 +30,10 @@ public class StairsOfOH14
             return next;
         }
     }
+
+    public static void main(String[] args) {
+        System.out.println(iterativRoutesToTop(10));
+        System.out.println(routesToTop(8));
+
+    }
 }
