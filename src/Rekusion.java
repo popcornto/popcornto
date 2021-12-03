@@ -63,12 +63,19 @@ public class Rekusion {
         d++;
         return countPositivesLimited(arr, d,t);
     }*/
-    public static int maximum(int[] arr, int i) {
+    /*public static int maximum(int[] arr, int i) {
+        if ()
+    }*/
+public static int maximum(int[] arr){
+    int max = 0;
 
-
-        return maximum(arr, i - 1);
+    for (int i = 0; i< arr.length;i++){
+    if (max < arr[i]){
+        max = arr[i];
     }
-
+    }
+    return max;
+}
     public static void hi() {
         System.out.println("HI");
         hi();
@@ -134,11 +141,11 @@ public class Rekusion {
 
 
     public static void main(String[] args) {
-        int[] Arr = {1, 2, 4, 0, 5, 6, 7, 3, 4, 5, 6, 7, 5};
+        int[] Arr = {10, 2, 4, 0, 5, 6, 7, 3, 4, 5, 6, 7, 9};
         char[] arr1 = {'a', 'b', 'c'};
         char[] arr2 = {'a', 'b', 'c'};
-        char[] arr3 = {'r', 'a', 'c', 'e', 'c', 'a', 'r'};
-        char[] arr4 = {'a','c','a'};
+        char[] arr3 = {'r', 'a', 'f', 'e', 'c', 'a', 'r'};
+        char[] arr4 = {'a','c','c','a'};
         int var = fakul(10);
         int var1 = DigitSum(15);
         //System.out.println(var);
@@ -147,42 +154,38 @@ public class Rekusion {
         //System.out.println(sumNegatives(new int[]{-1,-2,-3,-4},4 ));
         // System.out.println(countPositives(new int[]{1, -2, -3, 4, 3, 4, 3, 4}, 4));
         //System.out.println(countPositivesLimited(new int[]{1, -2, 3, 4, 3, 4, 3, 4,1,2,3,4}, 0,11));
-        //System.out.println(maximum(Arr,3));
+        System.out.println(maximum(Arr));
         //hi();
         //System.out.println(add(4));
         //System.out.println(grid(3,2));
         //System.out.println(isSorted(Arr, 3));
         //System.out.println(contains(Arr,3,3));
         //System.out.println(contentCheck(arr1, arr2, 2));
-        System.out.println(palindrumCheck(arr3, 3));
-
+        //System.out.println(palindrumCheck(arr3, arr3.length-1));
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {
         int hälfte = arr.length / 2;
-        int backwardsindex = arr.length - (i+1);
-        if (arr[i-1] != arr[arr.length - backwardsindex]) {
+        int first = arr.length -i;
+        if (arr[i] != arr[arr.length - i-1]) {
             return false;
         }
-        if (arr[i] < arr[hälfte-1] && arr[arr.length - backwardsindex] > arr[hälfte+1]) {
         if (arr.length % 2 == 1) {
-                if (arr[i] == arr[arr.length - backwardsindex]) {
-                    if (i == 0) {
-                        return true;
-                    }
+            if (arr.length-i <= hälfte && i >= hälfte )
+            if (arr[arr.length - i+1] == arr[i]) {
+                if (i == hälfte+1) {
+                    return true;
                 }
-
             }
-        } else if (arr.length % 2 == 0) {
-            if (arr[i] < arr[hälfte - 1] && arr[arr.length - backwardsindex] > arr[hälfte + 1]) {
-                if (arr[i] == arr[arr.length - backwardsindex]) {
-                    if (i == 0) {
-                        return true;
-                    }
+        }else if (arr.length % 2 == 0){
+            if (arr[arr.length - i] == arr[i]){
+                if (i == hälfte){
+                    return true;
                 }
-
             }
         }
+
+
         return palindrumCheck(arr, i - 1);
     }
 
