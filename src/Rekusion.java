@@ -63,65 +63,82 @@ public class Rekusion {
         d++;
         return countPositivesLimited(arr, d,t);
     }*/
-public static int maximum(int[] arr, int i){
-
-        
+    public static int maximum(int[] arr, int i) {
 
 
-        return maximum(arr, i-1);
-}
-public static void hi(){
-    System.out.println("HI");
-    hi();
-}
-public static int add(int n){
-    if(n == 0){
-        return n;
-    }else{
-        return n + add(n-1);
+        return maximum(arr, i - 1);
     }
 
-}
-public static int grid(int n, int m){
-    if(n==1 || m ==1 ) {
-        return 1;
-    }
-    if(n >= 2){
-        return m;
-    }else if (m >= 2){
-        return n;
-    }
-    return grid(n-1, m-1);
-}
-public static boolean isSorted(int[] arr, int i ){
-    boolean k = true;
-    if (i == 1){
-        return k;
-    }
-    if(arr[i] < arr[i-1]){
-        return false;
-
-    }else{
-        k = true;
-        return isSorted(arr, i-1);
-    }
-}
-public static boolean contains(int[] arr, int i, int x){
-    boolean cont = false;
-    if(arr[i] == x){
-        return  true;
-    }else if(arr[i] == 1){return false; }else{
-        return contains(arr,i-1,x);
+    public static void hi() {
+        System.out.println("HI");
+        hi();
     }
 
-}
-public static boolean contentCheck(char[] arr1, char[] arr2, int i){
-    if(arr1[i] == arr2[i]){
+    public static int add(int n) {
+        if (n == 0) {
+            return n;
+        } else {
+            return n + add(n - 1);
+        }
 
     }
-}
+
+    public static int grid(int n, int m) {
+        if (n == 1 || m == 1) {
+            return 1;
+        }
+        if (n >= 2) {
+            return m;
+        } else if (m >= 2) {
+            return n;
+        }
+        return grid(n - 1, m - 1);
+    }
+
+    public static boolean isSorted(int[] arr, int i) {
+        boolean k = true;
+        if (i == 1) {
+            return k;
+        }
+        if (arr[i] < arr[i - 1]) {
+            return false;
+
+        } else {
+            k = true;
+            return isSorted(arr, i - 1);
+        }
+    }
+
+    public static boolean contains(int[] arr, int i, int x) {
+        boolean cont = false;
+        if (arr[i] == x) {
+            return true;
+        } else if (arr[i] == 1) {
+            return false;
+        } else {
+            return contains(arr, i - 1, x);
+        }
+
+    }
+
+    public static boolean contentCheck(char[] arr1, char[] arr2, int i) {
+        if (arr1[i] == arr2[i] && i == 1) {
+            return true;
+        }
+        if (arr1[i] != arr2[i]) {
+            return false;
+        }
+
+        return contentCheck(arr1, arr2, i - 1);
+    }
+
+
     public static void main(String[] args) {
-        int [] Arr = {1,2,4,0,5,6,7,3,4,5,6,7,5};
+        int[] Arr = {1, 2, 4, 0, 5, 6, 7, 3, 4, 5, 6, 7, 5};
+        char[] arr1 = {'a', 'b', 'c'};
+        char[] arr2 = {'a', 'b', 'c'};
+        char[] arr3 = {'r', 'a', 'c', 'e', 'c', 'a', 'r'};
+        char[] arr4 = {'a','c','a'};
         int var = fakul(10);
         int var1 = DigitSum(15);
         //System.out.println(var);
@@ -136,7 +153,38 @@ public static boolean contentCheck(char[] arr1, char[] arr2, int i){
         //System.out.println(grid(3,2));
         //System.out.println(isSorted(Arr, 3));
         //System.out.println(contains(Arr,3,3));
+        //System.out.println(contentCheck(arr1, arr2, 2));
+        System.out.println(palindrumCheck(arr3, 3));
 
     }
 
+    public static boolean palindrumCheck(char[] arr, int i) {
+        int hälfte = arr.length / 2;
+        int backwardsindex = arr.length - (i+1);
+        if (arr[i-1] != arr[arr.length - backwardsindex]) {
+            return false;
+        }
+        if (arr[i] < arr[hälfte-1] && arr[arr.length - backwardsindex] > arr[hälfte+1]) {
+        if (arr.length % 2 == 1) {
+                if (arr[i] == arr[arr.length - backwardsindex]) {
+                    if (i == 0) {
+                        return true;
+                    }
+                }
+
+            }
+        } else if (arr.length % 2 == 0) {
+            if (arr[i] < arr[hälfte - 1] && arr[arr.length - backwardsindex] > arr[hälfte + 1]) {
+                if (arr[i] == arr[arr.length - backwardsindex]) {
+                    if (i == 0) {
+                        return true;
+                    }
+                }
+
+            }
+        }
+        return palindrumCheck(arr, i - 1);
+    }
+
 }
+

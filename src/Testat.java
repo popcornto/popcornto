@@ -1,27 +1,19 @@
-//Aref Jazmati
+public class Testat
+{
+    public static int apply( int[] arr, int i ) {
+        if (arr.length <= i) {
+            return 0;
+        }
+        if (i < 0){
+            return 0;
+        }
+
+        if (arr[i] < 4 && arr[i] > -4) {
+
+            return 1+apply(arr,i-1);
+        }
 
 
-public class Testat {
-    public static int[] apply(int[] arr, int x) {
-        int[] neuesfeld = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            if (i % 2 == 1) {
-                arr[i] = x;
-                neuesfeld[i]= arr[i];
-            }
-        }
-        for (int i = 0; i < arr.length; i++) {
-            if (i % 2 == 0) {
-                arr[i] = arr[i] * x;
-                neuesfeld[i] = arr[i];
-            }
-        }
-        return neuesfeld;
-    }
-
-    public static void main(String[] args) {
-        for (int element: apply(new int[]  {2,2,7,4,5,2}, 5)) {
-            System.out.println(element);
-        }
+            return apply(arr,i-1);
     }
 }
