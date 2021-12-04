@@ -138,10 +138,19 @@ public static int maximum(int[] arr){
 
         return contentCheck(arr1, arr2, i - 1);
     }
+public static int getIndex(int[] arr, int i, int x){
+    if (arr[arr.length-i] == x){
+        return i;
+    }else if (arr[arr.length-i] != x){
+        if (i == 1){return 0;}else
 
+            return getIndex(arr,i-1, x);
+    }
+    return getIndex(arr,i-1, x);
+}
 
     public static void main(String[] args) {
-        int[] Arr = {10, 2, 4, 0, 5, 6, 7, 3, 4, 5, 6, 7, 9};
+        int[] Arr = {10,3, 3};
         char[] arr1 = {'a', 'b', 'c'};
         char[] arr2 = {'a', 'b', 'c'};
         char[] arr3 = {'r', 'a', 'f', 'e', 'c', 'a', 'r'};
@@ -154,7 +163,7 @@ public static int maximum(int[] arr){
         //System.out.println(sumNegatives(new int[]{-1,-2,-3,-4},4 ));
         // System.out.println(countPositives(new int[]{1, -2, -3, 4, 3, 4, 3, 4}, 4));
         //System.out.println(countPositivesLimited(new int[]{1, -2, 3, 4, 3, 4, 3, 4,1,2,3,4}, 0,11));
-        System.out.println(maximum(Arr));
+        //System.out.println(maximum(Arr));
         //hi();
         //System.out.println(add(4));
         //System.out.println(grid(3,2));
@@ -162,6 +171,7 @@ public static int maximum(int[] arr){
         //System.out.println(contains(Arr,3,3));
         //System.out.println(contentCheck(arr1, arr2, 2));
         //System.out.println(palindrumCheck(arr3, arr3.length-1));
+        System.out.println(getIndex(Arr, Arr.length,4 ));
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {
@@ -184,8 +194,6 @@ public static int maximum(int[] arr){
                 }
             }
         }
-
-
         return palindrumCheck(arr, i - 1);
     }
 
