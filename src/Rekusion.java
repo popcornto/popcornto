@@ -149,6 +149,22 @@ public static int getIndex(int[] arr, int i, int x){
     return getIndex(arr,i-1, x);
 }
 
+        public static int sum(int k) {
+            if (k > 0) {
+                System.out.println(k);
+                return k + sum(k - 1);
+            } else {
+                return 0;
+            }
+        }
+
+    public static int sum(int start, int end) {
+        if (end > start) {
+            return end + sum(start, end - 1);
+        } else {
+            return end;
+        }
+    }
     public static void main(String[] args) {
         int[] Arr = {10,3, 3};
         char[] arr1 = {'a', 'b', 'c'};
@@ -172,6 +188,7 @@ public static int getIndex(int[] arr, int i, int x){
         //System.out.println(contentCheck(arr1, arr2, 2));
         //System.out.println(palindrumCheck(arr3, arr3.length-1));
         System.out.println(getIndex(Arr, Arr.length,4 ));
+        System.out.println(sum(3));
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {
