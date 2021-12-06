@@ -4,10 +4,10 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         int[] arr = {4, 9, 3, 5, 2, 0, 1, 8};
-        int[] arr1 = {};
+        int[] arr1 = {3,2,1};
         System.out.println(isSortedrek(arr, 7));
         System.out.println(isSorted(arr));
-        for (int elemnt : BubbaSorst(arr, 0)
+        for (int elemnt : BubbaSorst(arr1, 0)
         ) {
             System.out.print(elemnt);
         }
@@ -47,7 +47,7 @@ public class BubbleSort {
             int swapsecond = arr[i - 1];
 
 
-            if (isSortedrek(arr, arr.length-1) == true) {
+            if (isSortedrek(arr, arr.length-1)==true) {
                 return arr;
             }
 

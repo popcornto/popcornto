@@ -29,7 +29,7 @@ public class Quicksort {
         }
     }
     public static   void printSorted(int[] arr){
-        int first = 0;
+        int first = 0 ;
         int last = arr.length-1;
         quickSort(arr,first,last);
         for (int i = 0; i<arr.length; i++){
@@ -44,7 +44,7 @@ public class Quicksort {
         int[] arr = {4, 9, 3, 5, 2, 0, 1, 8};
         System.out.println(arr.length);
         quickSort(arr,0,arr.length-1);
-        printSorted(arr);
+        //printSorted(arr);
         }
 
     }

@@ -66,16 +66,28 @@ public class Rekusion {
     /*public static int maximum(int[] arr, int i) {
         if ()
     }*/
-public static int maximum(int[] arr){
+/*public static int maximum(int[] arr) {
     int max = 0;
 
-    for (int i = 0; i< arr.length;i++){
-    if (max < arr[i]){
-        max = arr[i];
-    }
+    for (int i = 0; i < arr.length; i++) {
+        if (max < arr[i]) {
+            max = arr[i];
+        }
     }
     return max;
-}
+}*/
+    public static int maximum(int[] arr, int i){
+        if(i == 0){
+            return arr[i];
+        }
+
+        int maximum = maximum(arr, i-1);
+        if (maximum < arr[i]){
+            maximum = arr[i];
+        }
+        return maximum;
+    }
+
     public static void hi() {
         System.out.println("HI");
         hi();
@@ -166,7 +178,7 @@ public static int getIndex(int[] arr, int i, int x){
         }
     }
     public static void main(String[] args) {
-        int[] Arr = {10,3, 3};
+        int[] Arr = {5,3, 3,3,3,2,5,6,7,8,5,9};
         char[] arr1 = {'a', 'b', 'c'};
         char[] arr2 = {'a', 'b', 'c'};
         char[] arr3 = {'r', 'a', 'f', 'e', 'c', 'a', 'r'};
@@ -179,7 +191,7 @@ public static int getIndex(int[] arr, int i, int x){
         //System.out.println(sumNegatives(new int[]{-1,-2,-3,-4},4 ));
         // System.out.println(countPositives(new int[]{1, -2, -3, 4, 3, 4, 3, 4}, 4));
         //System.out.println(countPositivesLimited(new int[]{1, -2, 3, 4, 3, 4, 3, 4,1,2,3,4}, 0,11));
-        //System.out.println(maximum(Arr));
+        //System.out.println(maximum(Arr, Arr.length-1));
         //hi();
         //System.out.println(add(4));
         //System.out.println(grid(3,2));
@@ -187,8 +199,9 @@ public static int getIndex(int[] arr, int i, int x){
         //System.out.println(contains(Arr,3,3));
         //System.out.println(contentCheck(arr1, arr2, 2));
         //System.out.println(palindrumCheck(arr3, arr3.length-1));
-        System.out.println(getIndex(Arr, Arr.length,4 ));
-        System.out.println(sum(3));
+        //System.out.println(getIndex(Arr, Arr.length,4 ));
+        //System.out.println(sum(3));
+        System.out.println();
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {
