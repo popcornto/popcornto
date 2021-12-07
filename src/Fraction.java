@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class Fraction {
     private int numurator;
     private int denominator;
@@ -33,18 +35,17 @@ public class Fraction {
         Fraction f1 = new Fraction(5, 15);
         Fraction f2 = new Fraction(6, 2);
         Fraction f3 = new Fraction(2, 4);
-        Fraction f4 = new Fraction(1);
+        Fraction f4 = new Fraction(8);
         Fraction f5 = new Fraction(2);
         Fraction f6 = new Fraction(3);
         Fraction f7 = new Fraction(4);
         Fraction f8 = new Fraction(5);
-        Fraction f9 = new Fraction(6);
-        Fraction f10 = new Fraction(7);
+        Fraction f9 = new Fraction(-6);
+        Fraction f10 = new Fraction(-7);
 
 
         Fraction[] fractions = {f1, f2, f3};
         Fraction[] fractions1 = {f4, f5, f6, f4, f8, f9, f10};
-        Fraction[] fractions2 = {f4,f5,f6,f7,f8};
 
         //System.out.println(f1.add(f2));
         //System.out.println(f1.toString());
@@ -63,14 +64,10 @@ public class Fraction {
         //System.out.println(f1.Sorted(fractions1, fractions1.length-1));
         //System.out.println(f6.maximum(fractions1, fractions1.length-1));
         //Rekusioned
-        //System.out.println(f1.maximumrekfrac(fractions1, fractions1.length-1));
-        //System.out.println(f1.LastPositive(fractions1,fractions1.length-1));
-        System.out.println(f1.firstPositive(fractions1, fractions1.length-1));
-        System.out.println(f1.isSorted(fractions2, fractions2.length-1));
-        System.out.println(f1.contains(fractions2, fractions2.length-1, f4));
-        System.out.println(f1.countPositives(fractions2, 0 , fractions2.length-1));
-    }
+        System.out.println(f1.maximumrekfrac(fractions1, fractions1.length-1));
+        System.out.println(f1.LastPositive(fractions1,fractions1.length-1));
 
+    }
     //Praktikumsbaltt 4;
     public Fraction maximumrekfrac(Fraction[] arr, int i) {
         if (i == 0) {
@@ -83,7 +80,7 @@ public class Fraction {
         }
         return maximum;
     }
-    public Fraction LastPositive(Fraction[] arr, int i){
+public Fraction LastPositive(Fraction[] arr, int i){
         if (i == 1){
             return null;
         }
@@ -91,46 +88,8 @@ public class Fraction {
             return arr[i];
         }
         else return LastPositive(arr, i-1);
-    }
-    public Fraction firstPositive(Fraction[] arr, int i){
-        if (i == 1){
-            return null;
-        }
-        if (arr[arr.length-i-1].toDouble() > 0){
-            return arr[arr.length-i-1];
-        }
-        else return LastPositive(arr, i-1);
-    }
-    public boolean isSorted(Fraction[] arr, int i){
-        if (i == 1){
-            return true;
-        }
-        if (arr[i].toDouble() < arr[i-1].toDouble()) {
-            return false;
-        }return isSorted(arr, i-1);
+}
 
-    }
-
-    public boolean contains(Fraction[] arr, int i , Fraction x){
-        if (i == 0 && arr[i] != x){
-            return false;
-        }
-        if (arr[i] == x ) {
-            return true;
-        }return contains(arr, i-1, x);
-    }
-
-    public int countPositives(Fraction[] arr, int d , int t){
-        if (t+1  == d){
-            return t+1;
-        }
-        int count = countPositives(arr, d,t-1);
-        if (arr[t].toDouble() > 0){
-            count++;
-        }
-
-        return count;
-    }
 
     public Fraction apply(Fraction[] arr, Fraction x) {
         Fraction middle;
@@ -379,4 +338,5 @@ public class Fraction {
     }
 
 }
+
 
