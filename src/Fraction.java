@@ -68,7 +68,9 @@ public class Fraction {
         System.out.println(f1.firstPositive(fractions1, fractions1.length-1));
         System.out.println(f1.isSorted(fractions2, fractions2.length-1));
         System.out.println(f1.contains(fractions2, fractions2.length-1, f4));
+        System.out.println(f1.countPositives(fractions2, 0 , fractions2.length-1));
     }
+    
     //Praktikumsbaltt 4;
     public Fraction maximumrekfrac(Fraction[] arr, int i) {
         if (i == 0) {
@@ -108,13 +110,25 @@ public boolean isSorted(Fraction[] arr, int i){
     }return isSorted(arr, i-1);
 
 }
-public boolean contains(Fraction[] arr, int i , Fraction x){
+
+    public boolean contains(Fraction[] arr, int i , Fraction x){
     if (i == 0 && arr[i] != x){
         return false;
     }
     if (arr[i] == x ) {
         return true;
     }return contains(arr, i-1, x);
+}
+public int countPositives(Fraction[] arr, int d , int t){
+        if (t+1  == d){
+            return t+1;
+        }
+    int count = countPositives(arr, d,t-1);
+        if (arr[t].toDouble() > 0){
+            count++;
+        }
+
+         return count;
 }
 
     public Fraction apply(Fraction[] arr, Fraction x) {
