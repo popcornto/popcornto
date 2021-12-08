@@ -226,6 +226,28 @@ public static int getIndex(int[] arr, int i, int x){
         }
         return palindrumCheck(arr, i - 1);
     }
+    public static boolean isPossib(int[] arr, int i,int result) {
+        if (arr == null || i < 0 || i >= arr.length) {
+            throw new IllegalArgumentException();
+        }
+        if (i == 0) {
+            if (result + arr[i] == 0 || result - arr[i] == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
 
-}
+            if (isPossib(arr,i-1,result+arr[i])){
+                return true;
+            } else if(isPossib(arr,i-1,result-arr[i])){
+                return true;
+            }
+            return false;
+
+        }
+    }
+    }
+
+
 

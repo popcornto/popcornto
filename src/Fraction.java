@@ -38,8 +38,8 @@ public class Fraction {
         Fraction f4 = new Fraction(8);
         Fraction f5 = new Fraction(2);
         Fraction f6 = new Fraction(3);
-        Fraction f7 = new Fraction(4);
-        Fraction f8 = new Fraction(5);
+        Fraction f7 = new Fraction(-4);
+        Fraction f8 = new Fraction(-5);
         Fraction f9 = new Fraction(-6);
         Fraction f10 = new Fraction(-7);
 
@@ -65,13 +65,14 @@ public class Fraction {
         //System.out.println(f1.Sorted(fractions1, fractions1.length-1));
         //System.out.println(f6.maximum(fractions1, fractions1.length-1));
         //Rekusioned
-        System.out.println(f1.maximumrekfrac(fractions1, fractions1.length-1));
-        System.out.println(f1.LastPositive(fractions1,fractions1.length-1));
-        System.out.println(f1.firstPositive(fractions1, fractions1.length-1));
-        System.out.println(f1.isSorted(fractions2, fractions2.length-1));
-        System.out.println(f1.contains(fractions2, fractions2.length-1, f4));
-        System.out.println(f1.countPositives(fractions2, 0 , fractions2.length-1));
-
+        //System.out.println(f1.maximumrekfrac(fractions1, fractions1.length-1));
+        //System.out.println(f1.LastPositive(fractions1,fractions1.length-1));
+        //System.out.println(f1.firstPositive(fractions1, fractions1.length-1));
+        //System.out.println(f1.isSorted(fractions2, fractions2.length-1));
+        //System.out.println(f1.contains(fractions2, fractions2.length-1, f4));
+        //System.out.println(f1.countPositives(fractions2, 0 , fractions2.length-1));
+        //System.out.println(routstotop(80));
+        System.out.println(fib(4));
     }
     //Praktikumsbaltt 4;
     public Fraction maximumrekfrac(Fraction[] arr, int i) {
@@ -133,6 +134,20 @@ public Fraction LastPositive(Fraction[] arr, int i){
         }
 
         return count;
+    }
+    public static long routstotop(long steps ){
+        if (steps <=2){
+            return steps;
+        }
+        else{
+            return routstotop(steps-1) + routstotop(steps-2);
+        }
+    }
+    public static int fib(int x){
+        if (x == 2){
+            return x;
+        }
+        return x * fib(x-1);
     }
 
     public Fraction apply(Fraction[] arr, Fraction x) {
