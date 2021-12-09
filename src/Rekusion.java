@@ -76,13 +76,13 @@ public class Rekusion {
     }
     return max;
 }*/
-    public static int maximum(int[] arr, int i){
-        if(i == 0){
+    public static int maximum(int[] arr, int i) {
+        if (i == 0) {
             return arr[i];
         }
 
-        int maximum = maximum(arr, i-1);
-        if (maximum < arr[i]){
+        int maximum = maximum(arr, i - 1);
+        if (maximum < arr[i]) {
             maximum = arr[i];
         }
         return maximum;
@@ -150,25 +150,28 @@ public class Rekusion {
 
         return contentCheck(arr1, arr2, i - 1);
     }
-public static int getIndex(int[] arr, int i, int x){
-    if (arr[arr.length-i] == x){
-        return i;
-    }else if (arr[arr.length-i] != x){
-        if (i == 1){return 0;}else
 
-            return getIndex(arr,i-1, x);
-    }
-    return getIndex(arr,i-1, x);
-}
-
-        public static int sum(int k) {
-            if (k > 0) {
-                System.out.println(k);
-                return k + sum(k - 1);
-            } else {
+    public static int getIndex(int[] arr, int i, int x) {
+        if (arr[arr.length - i] == x) {
+            return i;
+        } else if (arr[arr.length - i] != x) {
+            if (i == 1) {
                 return 0;
-            }
+            } else
+
+                return getIndex(arr, i - 1, x);
         }
+        return getIndex(arr, i - 1, x);
+    }
+
+    public static int sum(int k) {
+        if (k > 0) {
+            System.out.println(k);
+            return k + sum(k - 1);
+        } else {
+            return 0;
+        }
+    }
 
     public static int sum(int start, int end) {
         if (end > start) {
@@ -177,12 +180,14 @@ public static int getIndex(int[] arr, int i, int x){
             return end;
         }
     }
+
     public static void main(String[] args) {
-        int[] Arr = {5,3, 3,3,3,2,5,6,7,8,5,9};
+        int[] Arr = {5, 3, 3, 3, 3, 2, 5, 6, 7, 8, 5, 9};
+        int[] arrr = {5, 5, 5, 5};
         char[] arr1 = {'a', 'b', 'c'};
         char[] arr2 = {'a', 'b', 'c'};
         char[] arr3 = {'r', 'a', 'f', 'e', 'c', 'a', 'r'};
-        char[] arr4 = {'a','c','c','a'};
+        char[] arr4 = {'a', 'c', 'c', 'a'};
         int var = fakul(10);
         int var1 = DigitSum(15);
         //System.out.println(var);
@@ -201,53 +206,64 @@ public static int getIndex(int[] arr, int i, int x){
         //System.out.println(palindrumCheck(arr3, arr3.length-1));
         //System.out.println(getIndex(Arr, Arr.length,4 ));
         //System.out.println(sum(3));
-        System.out.println();
+        System.out.println(isPossib(arrr, arrr.length - 1, 0));
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {
         int hälfte = arr.length / 2;
-        int first = arr.length -i;
-        if (arr[i] != arr[arr.length - i-1]) {
+        int first = arr.length - i;
+        if (arr[i] != arr[arr.length - i - 1]) {
             return false;
         }
         if (arr.length % 2 == 1) {
-            if (arr.length-i <= hälfte && i >= hälfte )
-            if (arr[arr.length - i+1] == arr[i]) {
-                if (i == hälfte+1) {
-                    return true;
+            if (arr.length - i <= hälfte && i >= hälfte)
+                if (arr[arr.length - i + 1] == arr[i]) {
+                    if (i == hälfte + 1) {
+                        return true;
+                    }
                 }
-            }
-        }else if (arr.length % 2 == 0){
-            if (arr[arr.length - i] == arr[i]){
-                if (i == hälfte){
+        } else if (arr.length % 2 == 0) {
+            if (arr[arr.length - i] == arr[i]) {
+                if (i == hälfte) {
                     return true;
                 }
             }
         }
         return palindrumCheck(arr, i - 1);
     }
-    public static boolean isPossib(int[] arr, int i,int result) {
+
+    public static boolean isPossib(int[] arr, int i, int result) {
+        //Ausnahmen
         if (arr == null || i < 0 || i >= arr.length) {
             throw new IllegalArgumentException();
         }
+        //Abbruchbedingung
         if (i == 0) {
             if (result + arr[i] == 0 || result - arr[i] == 0) {
+
                 return true;
             } else {
+
                 return false;
             }
+            //problem kleiner machen
         } else {
 
-            if (isPossib(arr,i-1,result+arr[i])){
+            if (isPossib(arr, i - 1, result + arr[i])) {
+
                 return true;
-            } else if(isPossib(arr,i-1,result-arr[i])){
+            } else if (isPossib(arr, i - 1, result - arr[i])) {
+
                 return true;
             }
+
             return false;
 
         }
     }
-    }
+
+    
+}
 
 
 

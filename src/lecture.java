@@ -1,15 +1,15 @@
 public class lecture {
     private String title;
-    private Student[] students;
+    private Students[] students;
     private int firstUnsed;
 
     public lecture(String t, int cap )
     {
         title = t;
-        students = new Student[cap];
+        students = new Students[cap];
         firstUnsed = 0;
     }
-    public boolean add( Student s )
+    public boolean add( Students s )
     {
         for ( int i = 0; i < students.length; i++ )
         {
@@ -25,7 +25,7 @@ public class lecture {
     public void show(){
         System.out.println("lecture: " + title);
         System.out.println("participents: ");
-        for (Student s: students){
+        for (Students s: students){
             if(s != null){
                 System.out.println(s.toString());
             }
