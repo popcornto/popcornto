@@ -1,44 +1,42 @@
-public class Testumgebung
-{
-    public static void main( String args[] )
+
+    public class Testumgebung
     {
-        System.out.println();
-        // Beispiel 1
-        int[] arr1 = {-1,12,-3,4,25};
-        System.out.println( Testat.apply( arr1, 4 ) );
 
-        //Beispiel 2
-        int[] arr2 = {10,-2,5,5,-11};
-        System.out.println( Testat.apply( arr2, 4 ) );
+        public static void main( String args[] )
+        {
 
-        //Beispiel 3
-        int[] arr3 = {8,1,14,22,28,-1};
-        System.out.println( Testat.apply( arr3, 5 ) );
+            // Beispiel 1
+            Fraction[] arr1 = { new Fraction(0,1), new Fraction(1,5), new Fraction(11,6), new Fraction(1,5), new Fraction(1,10), new Fraction(1,1) };
+            System.out.println( Testat.apply( arr1, 5 ).toString() );
 
-        //Beispiel 4
-        int[] arr4 = {7,9,3,17,2,-2};
-        System.out.println( Testat.apply( arr4, 5 ) );
+            //Beispiel 2
+            Fraction[] arr2 = { new Fraction(1,5), new Fraction(11,6), new Fraction(1,1), new Fraction(1,10), new Fraction(2,1) };
+            System.out.println( Testat.apply( arr2, 4 ).toString() );
 
-        //Beispiel 5
-        int[] arr5 = {1,-3};
-        System.out.println( Testat.apply( arr5, 1 ) );
+            //Beispiel 3
+            Fraction[] arr3 = { new Fraction(2,1), new Fraction(6,7), new Fraction(8,7) };
+            System.out.println( Testat.apply( arr3, 2 ).toString() );
 
-        //Beispiel 6
-        int[] arr6 = {3};
-        System.out.println( Testat.apply( arr6, 0 ) );
+            //Beispiel 4
+            Fraction[] arr4 = { new Fraction(2,7) };
+            System.out.println( Testat.apply( arr4, 0 ).toString() );
 
-        // Beispiel 7
-        int[] arr7 = {0,2,3,4,5};
-        System.out.println( Testat.apply( arr7, -1 ) );
+            //Beispiel 5
+            Fraction[] arr5 = { new Fraction(7,2) };
+            System.out.println( Testat.apply( arr5, 0 ).toString() );
 
-        // Beispiel 8
-        int[] arr8 = {0,2,3,4,5};
-        System.out.println( Testat.apply( arr8, 5 ) );
+            //Beispiel 6
+            Fraction[] arr6 = { new Fraction(1,5), new Fraction(11,6), new Fraction(1,5), new Fraction(1,10), new Fraction(1,1) };
+            System.out.println( Testat.apply( arr6, -1 ).toString() );
 
-        //Beispiel 9
-        int[] arr9 = {};
-        System.out.println( Testat.apply( arr9, 1 ) );
+            //Beispiel 7
+            Fraction[] arr7 = { new Fraction(1,5), new Fraction(11,6), new Fraction(1,5), new Fraction(1,10), new Fraction(1,1) };
+            System.out.println( Testat.apply( arr7, 5 ) );
+
+            //Beispiel 8
+            Fraction[] arr8 = {};
+            System.out.println( Testat.apply( arr8, 1 ).toString() );
+
+        }
 
     }
-
-}

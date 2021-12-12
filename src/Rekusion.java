@@ -182,7 +182,8 @@ public class Rekusion {
     }
 
     public static void main(String[] args) {
-        int[] Arr = {5, 3, 3, 3, 3, 2, 5, 6, 7, 8, 5, 9};
+        int[] Arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10};
+        System.out.println(Arr.length - 1);
         int[] arrr = {5, 5, 5, 5};
         char[] arr1 = {'a', 'b', 'c'};
         char[] arr2 = {'a', 'b', 'c'};
@@ -206,7 +207,8 @@ public class Rekusion {
         //System.out.println(palindrumCheck(arr3, arr3.length-1));
         //System.out.println(getIndex(Arr, Arr.length,4 ));
         //System.out.println(sum(3));
-        System.out.println(isPossib(arrr, arrr.length - 1, 0));
+        //System.out.println(isPossib(arrr, arrr.length - 1, 0));
+        //System.out.println(binarySearchRekursiv(Arr, 8, 0, Arr.length-1));
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {
@@ -253,7 +255,6 @@ public class Rekusion {
 
                 return true;
             } else if (isPossib(arr, i - 1, result - arr[i])) {
-
                 return true;
             }
 
@@ -262,7 +263,27 @@ public class Rekusion {
         }
     }
 
-    
+    public static boolean binarySearchRekursiv(int[] arr, int x, int start, int end) {
+
+        if (start == end) {
+            if (arr[start] == x) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        int mid = (end - 1) / 2;
+        if (arr[mid] == x) {
+            return true;
+        } else if (binarySearchRekursiv(arr, x, start + 1, end)) {
+            return true;
+        } else if (binarySearchRekursiv(arr, x, start, end - 1)) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
 
 
