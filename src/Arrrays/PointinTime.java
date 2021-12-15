@@ -1,4 +1,4 @@
-package mans;
+package Arrrays;
 
 public class PointinTime {
     private int years;

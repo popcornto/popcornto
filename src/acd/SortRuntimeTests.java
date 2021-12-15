@@ -49,9 +49,9 @@ public class SortRuntimeTests
         }
         System.out.println(); System.out.println();
         System.out.println( "   " + iterations + " tests with " + capacity + " unsorted acd.Students objects:" );
-        System.out.println( "      average acd.time - insertion sort: " + timeInsertion/iterations );
-        System.out.println( "      average acd.time - selection sort: " + timeSelection/iterations );
-        System.out.println( "      average acd.time - quick sort: " + timeQuick/iterations );
+        System.out.println( "      average Arrrays.time - insertion sort: " + timeInsertion/iterations );
+        System.out.println( "      average Arrrays.time - selection sort: " + timeSelection/iterations );
+        System.out.println( "      average Arrrays.time - quick sort: " + timeQuick/iterations );
     }
 
     // one run with capacity acd.Students objects in ascending order
@@ -92,9 +92,9 @@ public class SortRuntimeTests
 
         System.out.println();
         System.out.println( "   test with " + capacity + " acd.Students objects in ascending order:" );
-        System.out.println( "      acd.time - insertion sort (best case): " + timeInsertion );
-        System.out.println( "      acd.time - selection sort: " + timeSelection );
-        System.out.println( "      acd.time - quick sort: " + (capacity>3001 ? "overflow" : ""+timeQuick) ); // verhindert falsche Ausgabe
+        System.out.println( "      Arrrays.time - insertion sort (best case): " + timeInsertion );
+        System.out.println( "      Arrrays.time - selection sort: " + timeSelection );
+        System.out.println( "      Arrrays.time - quick sort: " + (capacity>3001 ? "overflow" : ""+timeQuick) ); // verhindert falsche Ausgabe
     }
 
     // one run with capacity acd.Students objects in downward order
@@ -135,9 +135,9 @@ public class SortRuntimeTests
 
         System.out.println();
         System.out.println( "   test with " + capacity + " acd.Students objects in downward order:" );
-        System.out.println( "      acd.time - insertion sort (worst case): " + timeInsertion );
-        System.out.println( "      acd.time - selection sort: " + timeSelection );
-        System.out.println( "      acd.time - quick sort: " + (capacity>3001 ? "overflow" : ""+timeQuick) ); // verhindert falsche Ausgabe
+        System.out.println( "      Arrrays.time - insertion sort (worst case): " + timeInsertion );
+        System.out.println( "      Arrrays.time - selection sort: " + timeSelection );
+        System.out.println( "      Arrrays.time - quick sort: " + (capacity>3001 ? "overflow" : ""+timeQuick) ); // verhindert falsche Ausgabe
     }
 
 

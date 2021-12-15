@@ -1,4 +1,4 @@
-package acd;
+package Arrrays;
 
 public class time {
     public static int hourstoSeconds(int hours, int minutes)

@@ -1,4 +1,4 @@
-package acd;
+package Arrrays;
 
 public class zahlen {
 

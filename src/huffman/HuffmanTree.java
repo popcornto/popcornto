@@ -4,7 +4,15 @@ public class HuffmanTree {
     private HuffmanTriple content;
     private HuffmanTree leftChild, rightChild;
 
-
+    public static void main(String[] args) {
+        HuffmanTriple[] tokens1 = {new HuffmanTriple( 'a', 30 ),
+                        new HuffmanTriple( 'b', 20 ),
+                        new HuffmanTriple( 'c', 10 ),
+                        new HuffmanTriple( 'd', 15 ),
+                        new HuffmanTriple( 'e', 80 )};
+        HuffmanCoding hc = new HuffmanCoding(tokens1);
+        hc.showCodeTable();
+    }
     //leerer Baum
     public HuffmanTree(){
         content = null;
@@ -64,4 +72,5 @@ public class HuffmanTree {
             }
         }
     }
+
 }

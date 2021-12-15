@@ -1,4 +1,4 @@
-package awd;
+package mans;
 
 public class Robots {
 

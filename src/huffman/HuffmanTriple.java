@@ -31,7 +31,7 @@ public HuffmanTriple(){
     public void setCode(String c){
     code = c;
     }
-//
+
     public void incrementQuantity(){
     quantity++;
     }

@@ -13,7 +13,7 @@ public class bro {
         int summe = 0;
         int i;
         int r;
-//die for schleife dient dazu, dass die acd.zahlen durch 10 zu teilen und die letzte zahl mit sum zu ermittlen
+//die for schleife dient dazu, dass die Arrrays.zahlen durch 10 zu teilen und die letzte zahl mit sum zu ermittlen
         for (i = 1; x >= i; i=i*10) {
             r = x / i;
             sum = r % 10;
