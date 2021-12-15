@@ -185,7 +185,6 @@ public class Rekusion {
 
     public static void main(String[] args) {
         int[] Arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10};
-        System.out.println(Arr.length - 1);
         int[] arrr = {5, 5, 5, 5};
         char[] arr1 = {'a', 'b', 'c'};
         char[] arr2 = {'a', 'b', 'c'};
@@ -211,6 +210,12 @@ public class Rekusion {
         //System.out.println(sum(3));
         //System.out.println(isPossib(arrr, arrr.length - 1, 0));
         //System.out.println(binarySearchRekursiv(Arr, 8, 0, Arr.length-1));
+        String num = "1010170101";
+        for (int i = 0;i < num.length();i++){
+            System.out.print(num.charAt(i));
+        }
+
+
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {

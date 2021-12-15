@@ -35,7 +35,7 @@ public HuffmanTriple(){
     public void incrementQuantity(){
     quantity++;
     }
-    public int compareTo(HuffmanTriple other){
+    public int compareto(HuffmanTriple other){
     return quantity - other.quantity;
     }
     public String toString(){
