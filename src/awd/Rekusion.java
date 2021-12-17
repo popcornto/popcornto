@@ -184,7 +184,7 @@ public class Rekusion {
     }
 
     public static void main(String[] args) {
-        int[] Arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10};
+        int[] Arr = {3,4,3,2,2,6,7,72,234,456,6,3,6, 0, 10};
         int[] arrr = {5, 5, 5, 5};
         char[] arr1 = {'a', 'b', 'c'};
         char[] arr2 = {'a', 'b', 'c'};
@@ -211,8 +211,12 @@ public class Rekusion {
         //System.out.println(isPossib(arrr, arrr.length - 1, 0));
         //System.out.println(binarySearchRekursiv(Arr, 8, 0, Arr.length-1));
         String num = "1010170101";
-        for (int i = 0;i < num.length();i++){
+        /*for (int i = 0;i < num.length();i++){
             System.out.print(num.charAt(i));
+        }*/
+        quicky(Arr, 0, Arr.length-1);
+        for (int elemt:Arr) {
+            System.out.println(elemt);
         }
 
 
@@ -290,6 +294,36 @@ public class Rekusion {
         return false;
     }
 
+public static void quicky(int[] arr, int left, int right){
+
+    if (left < right) {
+        int part = party(arr, left, right);
+
+        quicky(arr, left, part-1);
+        quicky(arr, part +1, right);
+    }
+
+            }
+
+public static int party(int[] arr, int left, int right){
+        int pivot = arr[right];
+        int i = left-1;
+
+        for (int j = left; j < right;j++){
+            if (arr[j] <= pivot ){
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        int temp = arr[i+1];
+        arr[i+1] = arr[right];
+        arr[right] = temp;
+
+
+       return i+1;
+}
 
 }
 
