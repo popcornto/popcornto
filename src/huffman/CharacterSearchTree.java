@@ -1,7 +1,5 @@
 package huffman;
 
-import java.nio.channels.ConnectionPendingException;
-
 public class CharacterSearchTree {
     private HuffmanTriple content;
     private CharacterSearchTree leftChild, rightChild;
@@ -13,9 +11,24 @@ public class CharacterSearchTree {
         rightChild = null;
     }
 
+    public CharacterSearchTree(char[] arr) {
+        CharacterSearchTree current = this;
+
+        for (int i = 0; i < arr.length; i++) {
+            iterativeAdd(arr[i]);
+        }
+    }
+
     public static void main(String[] args) {
-        firstTreeTest();
-        secondTreeTest();
+
+        char[] arr = {'b', 'a', 'a', 'c', 'd', 's', 'a', 'b'};
+        CharacterSearchTree current = new CharacterSearchTree(arr);
+        //firstTreeTest();
+        //secondTreeTest();
+        //current.show();
+        current.add('t', 5, "sheesh");
+        current.show();
+
     }
 
     public static void firstTreeTest() {
@@ -134,6 +147,28 @@ public class CharacterSearchTree {
             current.rightChild = new CharacterSearchTree();
         } else {
             current.content.incrementQuantity();
+        }
+    }
+
+    public void add(char t, int q, String c) {
+        CharacterSearchTree current = this;
+        while (!current.isEmpty() && current.content.getToken() != t) {
+            if (current.content.getToken() > t) {
+                current = current.leftChild;
+            } else {
+                current = current.rightChild;
+            }
+        }
+        if (!current.isEmpty() && current.content.getToken() == t) {
+            current.content.incrementQuantity();
+            current.content.setCode(c);
+            current.leftChild = new CharacterSearchTree();
+            current.rightChild = new CharacterSearchTree();
+        }if(current.isEmpty()){
+            current.content = new HuffmanTriple(t, q);
+            current.content.setCode(c);
+            current.leftChild = new CharacterSearchTree();
+            current.rightChild = new CharacterSearchTree();
         }
     }
 

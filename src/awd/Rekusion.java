@@ -184,8 +184,8 @@ public class Rekusion {
     }
 
     public static void main(String[] args) {
-        int[] Arr = {3,4,3,2,2,6,7,72,234,456,6,3,6, 0, 10};
-        int[] arrr = {5, 5, 5, 5};
+        int[] Arr = {3, 4, 3, 2, 2, 6, 7, 72, 234, 456, 6, 3, 6, 0, 10};
+        int[] arrr = {5, 5, 5, 9};
         char[] arr1 = {'a', 'b', 'c'};
         char[] arr2 = {'a', 'b', 'c'};
         char[] arr3 = {'r', 'a', 'f', 'e', 'c', 'a', 'r'};
@@ -214,12 +214,16 @@ public class Rekusion {
         /*for (int i = 0;i < num.length();i++){
             System.out.print(num.charAt(i));
         }*/
-        quicky(Arr, 0, Arr.length-1);
+        /*quicky(Arr, 0, Arr.length-1);
         for (int elemt:Arr) {
             System.out.println(elemt);
-        }
-
-
+        }*/
+        //System.out.println(Tudorek(8));
+        //System.out.println(Todo(8));
+        //System.out.println(TUDOZahlen_Iterativ(92));
+        System.out.println(todo(92));
+        System.out.println(adding(arrr, 9));
+        System.out.println(addingrek(arrr, 10, arrr.length - 1));
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {
@@ -294,37 +298,136 @@ public class Rekusion {
         return false;
     }
 
-public static void quicky(int[] arr, int left, int right){
+    public static void quicky(int[] arr, int left, int right) {
 
-    if (left < right) {
-        int part = party(arr, left, right);
+        if (left < right) {
+            int part = party(arr, left, right);
 
-        quicky(arr, left, part-1);
-        quicky(arr, part +1, right);
+            quicky(arr, left, part - 1);
+            quicky(arr, part + 1, right);
+        }
+
     }
 
-            }
-
-public static int party(int[] arr, int left, int right){
+    public static int party(int[] arr, int left, int right) {
         int pivot = arr[right];
-        int i = left-1;
+        int i = left - 1;
 
-        for (int j = left; j < right;j++){
-            if (arr[j] <= pivot ){
+        for (int j = left; j < right; j++) {
+            if (arr[j] <= pivot) {
                 i++;
                 int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
         }
-        int temp = arr[i+1];
-        arr[i+1] = arr[right];
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[right];
         arr[right] = temp;
 
 
-       return i+1;
-}
+        return i + 1;
+    }
 
+    public static long Tudorek(long x) {
+        if (x <= 3) {
+            return x;
+        }
+
+        return Tudorek(x - 2) + Tudorek(x - 4);
+    }
+
+    public static long Todo(long x) {
+        long next = 0;
+        if (x <= 3) {
+            return x;
+        }
+        while (next <= x) {
+            int four = 4;
+            int two = 2;
+
+            for (int i = two; two <= x; i = i + two) {
+                if (i > x) {
+                    next = next + (i - two);
+                    break;
+                } else if (i == x) {
+                    next = next + i;
+                    break;
+                }
+            }
+            for (int i = four; four <= x; i += four) {
+                if (i > x) {
+                    next = next + (i - four);
+                    break;
+                } else if (i == x) {
+                    next = next + i;
+                    break;
+                }
+
+            }
+
+        }
+        return next;
+    }
+
+    public static long TUDOZahlen_Iterativ(int n) {
+        long[] werte = new long[n + 1];
+        if (n <= 3 && n >= 0) {
+            return n;
+        } else {
+
+
+            werte[0] = 0;
+            werte[1] = 1;
+            werte[2] = 2;
+            werte[3] = 3;
+
+            for (int i = 4; i < n + 1; i++) {
+                werte[i] = werte[i - 2] + werte[i - 4];
+            }
+        }
+        return werte[n];
+    }
+
+    public static long todo(long n) {
+        long next = 0;
+        //if n kleiner als 4 gib den wert zurück
+        if (n < 4) {
+            return n;
+        }
+
+        long two = 2;
+        long four = 0;
+        for (long i = n; i >= 3; i -= 2) {
+            next = four + two;
+            four = two;
+            two = next;
+        }
+        return next;
+    }
+
+    public static int adding(int[] arr, int num) {
+        int i = arr[0];
+        for (int j = arr.length - 1; j > 1; j--) {
+            if (i + arr[j] == num) {
+                return j;
+            }
+        }
+        return 0;
+    }
+
+    public static int addingrek(int[] arr, int num, int i) {
+        if (i == 1) {
+            return 0;
+        }
+
+        if (arr[1] + arr[i] == num) {
+            return i;
+        } else {
+            return addingrek(arr, num, i - 1);
+        }
+
+    }
 }
 
 
