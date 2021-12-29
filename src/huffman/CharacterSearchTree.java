@@ -20,15 +20,16 @@ public class CharacterSearchTree {
     }
 
     public static void main(String[] args) {
-
-        char[] arr = {'b', 'a', 'a', 'c', 'd', 's', 'a', 'b'};
+        char[] arr = {'b', 'c', 'f', 'j', 't', 't', 'a', 'b'};
         CharacterSearchTree current = new CharacterSearchTree(arr);
         //firstTreeTest();
         //secondTreeTest();
         //current.show();
-        current.add('t', 5, "sheesh");
-        current.show();
-
+        //current.add('t', 5, "sheesh");
+        //current.show();
+        //current.add2('t', 5, "sheesh");
+        //current.show();
+        current.showPreOrder();
     }
 
     public static void firstTreeTest() {
@@ -152,6 +153,7 @@ public class CharacterSearchTree {
 
     public void add(char t, int q, String c) {
         CharacterSearchTree current = this;
+
         while (!current.isEmpty() && current.content.getToken() != t) {
             if (current.content.getToken() > t) {
                 current = current.leftChild;
@@ -162,15 +164,39 @@ public class CharacterSearchTree {
         if (!current.isEmpty() && current.content.getToken() == t) {
             current.content.incrementQuantity();
             current.content.setCode(c);
-            current.leftChild = new CharacterSearchTree();
-            current.rightChild = new CharacterSearchTree();
-        }if(current.isEmpty()){
+        }
+        if (current.isEmpty()) {
             current.content = new HuffmanTriple(t, q);
             current.content.setCode(c);
-            current.leftChild = new CharacterSearchTree();
-            current.rightChild = new CharacterSearchTree();
         }
-    }
 
+    }
+    public void add2(char t, int q, String c) {
+        if (isEmpty()) {
+            content = new HuffmanTriple(t, q);
+            content.setCode(c);
+            leftChild = new CharacterSearchTree();
+            rightChild = new CharacterSearchTree();
+        } else {
+            if (content.getToken() > t) {
+                leftChild.add2(t, q , c);
+            } else if (content.getToken() < t) {
+                rightChild.add2(t, q ,c);
+            } else if(content.getToken() == t) {
+                content.incrementQuantity();
+                content.setCode(c);
+            }
+        }
+
+    }
+public void showPreOrder(){
+    if (!isEmpty()  && content.getToken() != '*'){
+        System.out.println(content.toString());
+        leftChild.showPreOrder();
+        rightChild.showPreOrder();
+    }if (isLeaf()){
+        content = new HuffmanTriple('*');
+    }
+}
 
 }

@@ -10,9 +10,11 @@ public HuffmanTriple(char t, int q){
     code = "";
     quantity = q;
 }
+
 public HuffmanTriple(char t){
     this(t,1);
 }
+
 public HuffmanTriple(){
     this(' ', 0);
 }
