@@ -20,17 +20,15 @@ public class CharacterSearchTree {
     }
 
     public static void main(String[] args) {
-        char[] arr = {'b', 'c', 'f', 'j', 't', 't', 'a', 'b', 't'};
+
+        char[] arr = {'b', 'a', 'a', 'c', 'd', 's', 'a', 'b'};
         CharacterSearchTree current = new CharacterSearchTree(arr);
         //firstTreeTest();
         //secondTreeTest();
         //current.show();
-        //current.add('t', 5, "sheesh");
-        //current.show();
-        //current.add2('t', 5, "sheesh");
-        //current.show();
-        //System.out.println(current.countCharacters());
-        System.out.println(current.longestCode());
+        current.add('t', 5, "sheesh");
+        current.show();
+
     }
 
     public static void firstTreeTest() {
@@ -154,7 +152,6 @@ public class CharacterSearchTree {
 
     public void add(char t, int q, String c) {
         CharacterSearchTree current = this;
-
         while (!current.isEmpty() && current.content.getToken() != t) {
             if (current.content.getToken() > t) {
                 current = current.leftChild;
@@ -165,64 +162,15 @@ public class CharacterSearchTree {
         if (!current.isEmpty() && current.content.getToken() == t) {
             current.content.incrementQuantity();
             current.content.setCode(c);
-        }
-        if (current.isEmpty()) {
+            current.leftChild = new CharacterSearchTree();
+            current.rightChild = new CharacterSearchTree();
+        }if(current.isEmpty()){
             current.content = new HuffmanTriple(t, q);
             current.content.setCode(c);
-        }
-
-    }
-
-    public void add2(char t, int q, String c) {
-        if (isEmpty()) {
-            content = new HuffmanTriple(t, q);
-            content.setCode(c);
-            leftChild = new CharacterSearchTree();
-            rightChild = new CharacterSearchTree();
-        } else {
-            if (content.getToken() > t) {
-                leftChild.add2(t, q, c);
-            } else if (content.getToken() < t) {
-                rightChild.add2(t, q, c);
-            } else if (content.getToken() == t) {
-                content.incrementQuantity();
-                content.setCode(c);
-            }
-        }
-
-    }
-
-    public void showPreOrder() {
-        if (!isEmpty() && content.getToken() != '*') {
-            System.out.println(content.toString());
-            if (isLeaf()) {
-                content = new HuffmanTriple('*');
-            }
-            leftChild.showPreOrder();
-            rightChild.showPreOrder();
+            current.leftChild = new CharacterSearchTree();
+            current.rightChild = new CharacterSearchTree();
         }
     }
 
-    public int countCharacters() {
-        if (!isEmpty()) {
-            return content.getQuantity() + leftChild.countCharacters() + rightChild.countCharacters();
-        }
-        return 0;
-    }
-
-    public int longestCode() {
-        if (!isEmpty()) {
-            if (leftChild.content.getCode().length() < rightChild.content.getCode().length()) {
-                return rightChild.content.getCode().length();
-            } else if (leftChild.content.getCode().length() > rightChild.content.getCode().length()) {
-                return leftChild.content.getCode().length();
-            }else{
-                return content.getCode().length();
-            }
-        }
-        leftChild.longestCode();
-        rightChild.longestCode();
-        return 0;
-    }
 
 }
