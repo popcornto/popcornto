@@ -3,29 +3,22 @@ package XO;
 public class Player {
     private String name;
     private boolean turn;
-    private char X;
+    private char symbol;
 
-    public Player(String name, boolean turn, char x) {
+    public Player(String name, boolean turn, char symbol) {
         this.name = name;
         this.turn = turn;
-        X = x;
+        this.symbol = symbol;
     }
 
 
 
-    public char setchar(char x){
-        x= X;
-        return x;
+    public void setChar(char x){
+        this.symbol = x;
     }
-
 
     public void setName(String name) {
         this.name = name;
     }
 
-
-    public char setX(char x) {
-        x = X;
-        return x;
-    }
 }
