@@ -221,9 +221,10 @@ public class Rekusion {
         //System.out.println(Tudorek(8));
         //System.out.println(Todo(8));
         //System.out.println(TUDOZahlen_Iterativ(92));
-        System.out.println(todo(92));
-        System.out.println(adding(arrr, 9));
-        System.out.println(addingrek(arrr, 10, arrr.length - 1));
+        //System.out.println(todo(92));
+        //System.out.println(adding(arrr, 9));
+        //System.out.println(addingrek(arrr, 10, arrr.length - 1));
+        System.out.println(rekusiont(4));
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {
@@ -428,6 +429,55 @@ public class Rekusion {
         }
 
     }
+    public static int rekusiont(int x){
+        if(x <= 3){
+            return 1;
+        }else{
+            return 2* rekusiont(x-2) + 1;
+        }
+    }
+    /*
+    .data
+n: .word  4
+.text
+.globl main
+
+main:
+	addi x31, x0, 4
+	addi x30, x0, 2
+
+	lw x5, n                 		  # read the input to x5
+	jal x1, rec_func
+	add x10, x10, x0		 	  # Wert für die Ausgabe vorbereiten (Pseudo-op: mv)
+	li x17, 36 				  # Syscall zur Ausgabe eines vorzeichenlosen Integers
+	ecall
+	addi x5,x5,1
+	beq x0, x0, end
+
+rec_func:
+    addi x2, x2, -12                       # make room in stack
+    sw x1, (x2)                          # store pointer and result in stack
+    bge x5, x31, true               # if i > 3, then go to true branch
+    lw x1, 0(x2)				#load result
+    addi x10, x0, 1                 # if i <= 3, then return 1
+    addi x2, x2, 12                  # reset stack point
+    jalr x0, 0(x1)
+
+true:
+    addi x5, x5, -2                 # compute i-2
+    jal x1, rec_func                # call recursive func for i-2
+    lw x1, 0(x2)                    # load the return address
+    addi x2, x2, 12                  # reset stack point
+    mul x10, x10, x30               # multiply by 2
+    addi x10, x10, 1                # add 1
+
+    jalr x0, 0(x1)                  # return
+
+end:
+        li a7 , 10
+	ecall
+
+    */
 }
 
 
