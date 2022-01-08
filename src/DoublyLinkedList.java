@@ -1,3 +1,5 @@
+import Doublylinkedlists.Element;
+
 public class DoublyLinkedList
 {
     private Element first, last;

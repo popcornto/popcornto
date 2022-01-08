@@ -3,12 +3,9 @@ package awd;
 public class Rekusion {
 
     public static int fakul(int n) {
-
         if (n <= 2) {
             return n;
         }
-
-
         return n * fakul(n - 1);
     }
 
