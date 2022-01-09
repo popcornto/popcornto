@@ -18,7 +18,6 @@ public class Tiktak {
         Scanner scanner = new Scanner(System.in);
         System.out.println("What is your name?");
         player[0].setName(scanner.next());
-        System.out.println(player[0].getName());
         System.out.println("Which symbol do you want to choose?");
         player[0].setSymbol(scanner.next().charAt(0));
         System.out.println("What is your name?");

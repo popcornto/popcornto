@@ -215,13 +215,13 @@ public class Rekusion {
         for (int elemt:Arr) {
             System.out.println(elemt);
         }*/
-        //System.out.println(Tudorek(8));
+        System.out.println(Tudorek(8));
         //System.out.println(Todo(8));
         //System.out.println(TUDOZahlen_Iterativ(92));
         //System.out.println(todo(92));
         //System.out.println(adding(arrr, 9));
         //System.out.println(addingrek(arrr, 10, arrr.length - 1));
-        System.out.println(rekusiont(4));
+        //System.out.println(rekusiont(4));
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {
@@ -327,13 +327,7 @@ public class Rekusion {
         return i + 1;
     }
 
-    public static long Tudorek(long x) {
-        if (x <= 3) {
-            return x;
-        }
 
-        return Tudorek(x - 2) + Tudorek(x - 4);
-    }
 
     public static long Todo(long x) {
         long next = 0;
@@ -433,6 +427,13 @@ public class Rekusion {
             return 2* rekusiont(x-2) + 1;
         }
     }
+    public static long Tudorek(long x) {
+        if (x <= 3) {
+            return x;
+        }
+
+        return Tudorek(x - 2) + Tudorek(x - 4);
+    }
     /*
     .data
 n: .word  4
@@ -475,6 +476,58 @@ end:
 	ecall
 
     */
+    /*
+    .data
+  n: .word 15
+.text
+.globl main
+
+main:
+# Call function with argument n
+lw a0, n
+jal ra, tudo
+
+# Output result
+li a7, 36
+ecall
+# Exit program
+li a7, 10
+ecall
+
+tudo:
+    # Hier sollte ihr Code stehen
+    li a1, 0
+    li t0, 1
+    li t1, 0
+    li t2, 2
+
+    li a6, 3
+    ble  a1, a6, cond1
+    bgt a1, a6, head
+
+head:
+	add t1, a1, t0
+	mv a1, t1
+	mv t0, t1
+	addi t2, t2, 1
+	add x10, x10, x0		  # Wert für die Ausgabe vorbereiten (Pseudo-op: mv)
+	li x17, 36 				  # Syscall zur Ausgabe eines vorzeichenlosen Integers
+	ecall
+	blt t2, a0, head
+	bge t2, a0, end
+
+cond1:
+	add x10, x10, x0		  # Wert für die Ausgabe vorbereiten (Pseudo-op: mv)
+	li x17, 36 				  # Syscall zur Ausgabe eines vorzeichenlosen Integers
+	ecall
+	addi x5,x5,1
+	j end
+
+end:
+	mv a0 , a2
+	li a7 , 10
+	ecall
+	*/
 }
 
 
