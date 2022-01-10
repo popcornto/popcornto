@@ -2,7 +2,8 @@ package awd;
 
 public class Rekusion {
 
-    public static int fakul(int n) {
+
+    public static int fakul(int n){
         if (n <= 2) {
             return n;
         }
@@ -215,7 +216,7 @@ public class Rekusion {
         for (int elemt:Arr) {
             System.out.println(elemt);
         }*/
-        System.out.println(Tudorek(8));
+        System.out.println(Tudorek(15));
         //System.out.println(Todo(8));
         //System.out.println(TUDOZahlen_Iterativ(92));
         //System.out.println(todo(92));
@@ -432,7 +433,7 @@ public class Rekusion {
             return x;
         }
 
-        return Tudorek(x - 2) + Tudorek(x - 4);
+        return Tudorek(x - 2) + Tudorek(x-4);
     }
     /*
     .data
@@ -528,6 +529,86 @@ end:
 	li a7 , 10
 	ecall
 	*/
+    /*
+    .data
+  n: .word 15
+.text
+.globl main
+
+main:
+
+# Call function with argument n
+lw a0, n
+jal ra, tudo
+# Output result
+add x10, x10, x0
+li a7, 36
+ecall
+# Exit program
+li a7, 10
+ecall
+
+tudo:
+    # Hier sollte ihr Code stehen
+    li a1, 0
+    li t0, 1
+    li t1, 2
+    li t2, 3
+
+    addi x2, x2, -12                    # make room in stack
+    sw x1, (x2)				# store pointer and result in stack
+        add x10, x10, ra
+	li a7, 36
+	ecall
+    bge  a0, t2, true                   # if i > 3, then go to true branch
+    lw ra, 0(x2)		               #load result
+        beq a0, a1, ifZero			#wenn zero
+        beq a0, t0, ifEins			#wenn Eins
+        beq a0, t1, ifZwei			#wenn Zwei
+        beq a0, t2, ifDrei			#wenn Drei
+    	jalr ra, 0(x1)                             # return
+
+true:
+
+	addi a0, a0, -2                    # compute i-2
+    	jal x1, tudo                         # call recursive func for i-2
+    	lw x1, 0(x2)                       # load the return address
+    	addi x2, x2, 12                 # reset stack point
+    	lw ra, 0(x2)		               #load result
+        beq a0, a1, ifZero			#wenn zero
+        beq a0, t0, ifEins			#wenn Eins
+        beq a0, t1, ifZwei			#wenn Zwei
+        beq a0, t2, ifDrei			#wenn Drei
+    	jalr ra, 0(x1)                             # return
+
+ifZero:
+
+    addi ra, ra, 0                   # if i <= 3, then return 1
+    addi x2, x2, 12                    # reset stack point
+    jalr ra, 0(x1)
+
+ifEins:
+
+
+    addi ra, ra, 1                    # if i <= 3, then return 1
+    addi x2, x2, 12                    # reset stack point
+    jalr   ra, 0(x1)
+
+
+ifZwei:
+
+    addi ra, ra, 2                    # if i <= 3, then return 1
+    addi x2, x2, 12                    # reset stack point
+    jalr ra, 0(x1)
+
+
+ifDrei:
+
+    addi ra, ra, 3                    # if i <= 3, then return 1
+    addi x2, x2, 12                    # reset stack point
+    jalr ra, 0(x1)
+
+    */
 }
 
 
