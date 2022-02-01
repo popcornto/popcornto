@@ -51,8 +51,7 @@ public class Testumgebung {
         //doubleGreaterN(testPairs, 5);
         //testPairs.show();
         bro.show();
-        testPairs.combine(bro);
-        testPairs.show();
+        concat(testPairs, bro).show();
 
 
     }
@@ -136,5 +135,6 @@ public class Testumgebung {
          first.combine(second);
          return first;
      }
+
 }
 

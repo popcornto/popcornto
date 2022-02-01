@@ -1,3 +1,5 @@
+package asd;
+
 public class Fraction
 {
     private int numerator;      // Zaehler

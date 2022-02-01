@@ -30,6 +30,7 @@ public class Grid {
         }
     }
 
+
     public char getSymbol(int X, int Y, Grid grid) {
         return grid.getArr()[X][Y];
     }

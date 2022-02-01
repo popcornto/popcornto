@@ -144,37 +144,96 @@ public class DoublyLinkedList {
         Element current = first;
         Element next = current.getSucc();
         while (!isEmpty() && current != null) {
-            for (int i = 0; i < size; i++){
+            for (int i = 0; i < size; i++) {
                 if (current.getContent() == next.getContent()) {
                     return true;
-                } else if(next.hasSucc()) {
+                } else if (next.hasSucc()) {
                     next = next.getSucc();
-                }}
+                }
+            }
             current = current.getSucc();
         }
         return false;
     }
 
 
-    public void insert(int n, Object obj){
+    public void insert(int n, Object obj) {
         Element current = first;
         Element neu = new Element(obj);
-        if(!isEmpty() && n != 0){
-            for (int i = 0; i <= n;i++ ){
-                if (current.hasSucc()){
-                current = current.getSucc();
-            }
+        if (!isEmpty() && n != 0) {
+            for (int i = 0; i <= n; i++) {
+                if (current.hasSucc()) {
+                    current = current.getSucc();
+                }
             }
             Element prede = current.getPred();
             current.disconnectPred();
             neu.connectAsPred(prede);
             current.connectAsPred(neu);
             size++;
-        }else {
+        } else {
             neu.connectAsSucc(current);
             current.connectAsPred(neu);
             first = neu;
             size++;
+        }
+    }
+
+    public void toArray(Object[] arr) {
+        Element current = first;
+        for (int i = 0; i < arr.length; i++) {
+            if (current != null) {
+                arr[i] = current.getContent();
+                current = current.getSucc();
+            } else {
+                arr[i] = null;
+            }
+        }
+    }
+
+    public DoublyLinkedList flip() {
+        DoublyLinkedList flippedList = new DoublyLinkedList();
+        Element current = last;
+        while (current != null) {
+            flippedList.add(current.getContent());
+            current = current.getPred();
+        }
+        return flippedList;
+    }
+
+    public void remove(int n) {
+        Element current = first;
+        if (n == 0 && !isEmpty()) {
+            first = current.getSucc();
+            return;
+        }
+        if (!isEmpty()) {
+            for (int i = 0; i < n; i++) {
+                current = current.getSucc();
+            }
+            Element pred = current.getPred();
+            Element succ = current.getSucc();
+            pred.disconnectSucc();
+            succ.disconnectPred();
+            pred.connectAsSucc(succ);
+            succ.connectAsSucc(pred);
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
+    public void remove(Object obj) {
+        Element current = first;
+        Element pred = current.getPred();
+        Element succ = current.getSucc();
+        while (!isEmpty() && current != null) {
+            if (current.getContent().equals(obj)) {
+                pred.disconnectSucc();
+                succ.disconnectPred();
+                pred.connectAsSucc(succ);
+                succ.connectAsPred(pred);
+            }
+            current = succ;
         }
     }
 }

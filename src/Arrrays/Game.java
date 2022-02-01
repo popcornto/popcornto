@@ -1,10 +1,10 @@
 package Arrrays;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-
         int a = 0, b = 0, c = 0;
 
 
@@ -13,7 +13,6 @@ class Main {
             System.out.print("rps?\n ");
             String move = in.nextLine();
             String cMove = Character.toString("rps".charAt((int) (Math.random() * 3)));
-
 
 
             if (move.equals(cMove)) {
@@ -39,9 +38,6 @@ class Main {
             System.out.println("loses: " + b);
             System.out.println("Ties: " + c);
         }
-
-
-
             }
         }
     }
