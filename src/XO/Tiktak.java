@@ -41,7 +41,7 @@ public class Tiktak {
                         grid.setSymbol(i, j, player[0].getSymbol());
                         turn.setMyturn(turn.swapTurn());
                         break;
-                    } else {
+                    }else {
                         System.out.println("try Again this was invalid");
                         int i1 = scanner.nextInt();
                         int j1 = scanner.nextInt();

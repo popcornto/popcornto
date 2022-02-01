@@ -1,4 +1,4 @@
-package Doublylinkedlists;
+package P6;
 
 public class Element
 {
@@ -33,7 +33,7 @@ public class Element
 
     public void disconnectSucc()
     {
-        if ( hasSucc() )
+        if ( hasSucc() ) 
         {
             succ.pred = null;
             succ = null;
@@ -43,12 +43,12 @@ public class Element
     public void connectAsSucc( Element e)
     {
         disconnectSucc();
-        if ( e != null )
+        succ = e;
+        if ( e != null ) 
         {
             e.disconnectPred();
             e.pred = this;
         }
-        succ = e;
     }
 
     public boolean hasPred()
@@ -74,11 +74,11 @@ public class Element
     public void connectAsPred( Element e )
     {
         disconnectPred();
+        pred = e;
         if ( e != null )
         {
             e.disconnectSucc();
             e.succ = this;
         }
-        pred = e;
     }
 }

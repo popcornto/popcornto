@@ -216,13 +216,14 @@ public class Rekusion {
         for (int elemt:Arr) {
             System.out.println(elemt);
         }*/
-        System.out.println(Tudorek(15));
+        //System.out.println(Tudorek(92));
         //System.out.println(Todo(8));
         //System.out.println(TUDOZahlen_Iterativ(92));
         //System.out.println(todo(92));
         //System.out.println(adding(arrr, 9));
         //System.out.println(addingrek(arrr, 10, arrr.length - 1));
         //System.out.println(rekusiont(4));
+        System.out.println(mod(1));
     }
 
     public static boolean palindrumCheck(char[] arr, int i) {
@@ -434,6 +435,9 @@ public class Rekusion {
         }
 
         return Tudorek(x - 2) + Tudorek(x-4);
+    }
+    public static int mod(int x){
+        return 0%x;
     }
     /*
     .data
