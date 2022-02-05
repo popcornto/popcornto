@@ -144,37 +144,49 @@ public class DoublyLinkedList {
         Element current = first;
         Element next = current.getSucc();
         while (!isEmpty() && current != null) {
-            for (int i = 0; i < size; i++){
+            for (int i = 0; i < size; i++) {
                 if (current.getContent() == next.getContent()) {
                     return true;
-                } else if(next.hasSucc()) {
+                } else if (next.hasSucc()) {
                     next = next.getSucc();
-                }}
+                }
+            }
             current = current.getSucc();
         }
         return false;
     }
 
 
-    public void insert(int n, Object obj){
+    public void insert(int n, Object obj) {
         Element current = first;
         Element neu = new Element(obj);
-        if(!isEmpty() && n != 0){
-            for (int i = 0; i <= n;i++ ){
-                if (current.hasSucc()){
-                current = current.getSucc();
-            }
+        if (!isEmpty() && n != 0) {
+            for (int i = 0; i <= n; i++) {
+                if (current.hasSucc()) {
+                    current = current.getSucc();
+                }
             }
             Element prede = current.getPred();
             current.disconnectPred();
             neu.connectAsPred(prede);
             current.connectAsPred(neu);
             size++;
-        }else {
+        } else {
             neu.connectAsSucc(current);
             current.connectAsPred(neu);
             first = neu;
             size++;
         }
+
     }
+
+    public void concat(DoublyLinkedList dll) {
+        if (!isEmpty()) {
+            last.connectAsSucc(dll.first);
+            dll.first.connectAsPred(last);
+            last = dll.last;
+        }
+    }
+
+
 }

@@ -10,6 +10,7 @@ public class Testumgebung
     public static void testDoublyLinkedList()
     {
         DoublyLinkedList integers = new DoublyLinkedList();
+        DoublyLinkedList bre = new DoublyLinkedList();
         integers.add( 1 );
         integers.add( 2 );
         integers.add( 3 );
@@ -18,6 +19,10 @@ public class Testumgebung
         integers.add( 0 );
         integers.add( 8 );
         integers.add( 3);
+        bre.add( 6 );
+        bre.add( 0 );
+        bre.add( 8 );
+        bre.add( 3);
         integers.showAll();
         //integers.clear();
         //integers.showAll();
@@ -25,9 +30,13 @@ public class Testumgebung
         //System.out.println(integers.contains(0));
         //System.out.println(integers.count(4));
         //System.out.println(integers.allEqual());
-        System.out.println(integers.containsDouble());
-        integers.insert(0, 5);
+        //System.out.println(integers.containsDouble());
+        //integers.insert(0, 5);
+        //integers.showAll();
+        integers.concat(bre);
         integers.showAll();
+
+
 
 
     }
