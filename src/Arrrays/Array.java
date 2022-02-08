@@ -270,6 +270,7 @@ public class Array {
             if (arr[i] == p){
                 exists = true;
                 break;
+
             }
         }
         if (exists == true){

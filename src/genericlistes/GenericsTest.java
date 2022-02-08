@@ -1,13 +1,17 @@
 package genericlistes;
 
+
+
 public class GenericsTest
 {
     public static void main(String[] args)
     {
+
+        DoublyLinkedList<String> Empty = new DoublyLinkedList<>();
         DoublyLinkedList<String> ints = new DoublyLinkedList<>();
         ints.add("1");
         ints.add("2");
-        ints.add("3");
+        ints.add("7");
         ints.add("4");
         ints.add("7");
         ints.showAll();
@@ -32,9 +36,10 @@ public class GenericsTest
         doubles.appendFirst();
         doubles.showAll();*/
 
-        ints.intject(intsm, 2);
+        //ints.intject(intsm, 2);
+        //ints.showAll();
+        ints.cutInFrontOf("7").showAll();
         ints.showAll();
-
     }
     
     public static void test()
@@ -61,6 +66,6 @@ public class GenericsTest
             sum += it.next();
         }
         System.out.println( "sum: " + sum );
-        
+
     }
 }

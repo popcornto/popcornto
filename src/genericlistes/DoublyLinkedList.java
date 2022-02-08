@@ -287,17 +287,17 @@ public class DoublyLinkedList<T> {
                 if (p == count) {
                     Element currentInto = into.first;
                     for (int i = 0; i < into.size; i++) {
-                        if (current.hasSucc() && currentInto != null){
+                        if (current.hasSucc() && currentInto != null) {
                             current.disconnectPred();
                             current.connectAsSucc(currentInto);
                             currentInto = currentInto.getSucc();
-                        }else if (!into.isEmpty() && currentInto != null){
+                        } else if (!into.isEmpty() && currentInto != null) {
                             current.connectAsSucc(currentInto);
                             currentInto = currentInto.getSucc();
                         }
                     }
                     Element currnext = current.getSucc();
-                    if (currentInto.getSucc() == null){
+                    if (currentInto.getSucc() == null) {
                         currentInto.connectAsSucc(currnext);
                     }
                 }
@@ -306,4 +306,28 @@ public class DoublyLinkedList<T> {
         }
     }
 
+    public DoublyLinkedList<T> cutInFrontOf(T obj) {
+        if (!isEmpty()) {
+            Element current = first;
+            DoublyLinkedList<T> newList = new DoublyLinkedList<>();
+            if (current.hasSucc()) {
+                while (current != null && !current.getContent().equals(obj)) {
+                    newList.add(current.getContent());
+                    current = current.getSucc();
+                }
+            }
+            current = first;
+            if (current.hasSucc()) {
+                while (current != null && !current.getContent().equals(obj)) {
+                    current = current.getSucc();
+                }
+                if (current.hasPred()) {
+                    current.disconnectPred();
+                }
+                first = current;
+                return newList;
+            }
+        }
+        return new DoublyLinkedList<>();
+    }
 }
