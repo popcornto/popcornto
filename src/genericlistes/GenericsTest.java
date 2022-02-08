@@ -4,7 +4,37 @@ public class GenericsTest
 {
     public static void main(String[] args)
     {
-        test();
+        DoublyLinkedList<String> ints = new DoublyLinkedList<>();
+        ints.add("1");
+        ints.add("2");
+        ints.add("3");
+        ints.add("4");
+        ints.add("7");
+        ints.showAll();
+        DoublyLinkedList<String> intsm = new DoublyLinkedList<>();
+
+        intsm.add("4");
+        intsm.add("4");
+        intsm.add("4");
+        intsm.add("4");
+        intsm.add("4");
+        /*ints.positions();
+        for (int elemnt: ints.positions()
+             ) {
+            System.out.println(elemnt);
+        }*/
+        //ints.appendFirst();
+        //ints.showAll();
+
+        /*DoublyLinkedList<Double> doubles = new DoublyLinkedList<Double>();
+        doubles.add( 14.1 ); doubles.add( 7.4 ); doubles.add( 2.3 ); doubles.add( 5.0 );
+        doubles.showAll();
+        doubles.appendFirst();
+        doubles.showAll();*/
+
+        ints.intject(intsm, 2);
+        ints.showAll();
+
     }
     
     public static void test()
