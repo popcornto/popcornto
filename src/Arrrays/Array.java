@@ -14,7 +14,7 @@ public class Array {
     }
 
     public static void main(String[] args) {
-        int[] asdffg = {5 ,17 ,88,88 ,3 ,5};
+        int[] asdffg = {5, 17, 88, 88, 3, 5};
         int[] aref = {80, 0, 1, 0, 1, 80};
         int[] ass = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 34, 54, 5};
         //System.out.println(sumUpNegatives(new int[]{-1,1,-2,3,-4}));
@@ -44,6 +44,8 @@ public class Array {
         //System.out.println(towtimes(aref));
 
         System.out.println(BiggerThan(ass, 5));
+        //Arrays.asList(aref);
+
     }
 
     //System.out.println(doubleifcontainspositive(new int[]{1,6,3,3,6,2,4}));
@@ -266,43 +268,45 @@ public class Array {
 
     public static int BiggerThan(int[] arr, int p) {
         boolean exists = false;
-        for (int i = 0;i<arr.length;i++){
-            if (arr[i] == p){
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == p) {
                 exists = true;
                 break;
 
             }
         }
-        if (exists == true){
-        int biggerThan = 0;
-        int k = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] > p) {
-                biggerThan++;
-            }
-        }
-        int[] newArray = new int[biggerThan];
-        for (int j = 0; j < newArray.length; j++) {
-            while (k < arr.length) {
-                if (arr[k] > p) {
-                    newArray[j] = arr[k];
-                    k++;
-                    break;
-                } else {
-                    k++;
+        if (exists == true) {
+            int biggerThan = 0;
+            int k = 0;
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] > p) {
+                    biggerThan++;
                 }
             }
-        }
-        int min = newArray[0];
-        for (int i = 0;i < newArray.length-1;i++){
-            if (newArray[i] < min){
-                min = newArray[i];
-            }else if (newArray[i+1]< min){
-                min = newArray[i+1];
+            int[] newArray = new int[biggerThan];
+            for (int j = 0; j < newArray.length; j++) {
+                while (k < arr.length) {
+                    if (arr[k] > p) {
+                        newArray[j] = arr[k];
+                        k++;
+                        break;
+                    } else {
+                        k++;
+                    }
+                }
             }
-        }
-        return min;
-    }else {
+            int min = newArray[0];
+            for (int i = 0; i < newArray.length - 1; i++) {
+                if (newArray[i] < min) {
+                    min = newArray[i];
+                } else if (newArray[i + 1] < min) {
+                    min = newArray[i + 1];
+                }
+            }
+            return min;
+        } else {
             throw new IllegalStateException();
-        }}
+        }
+    }
+
 }

@@ -4,7 +4,16 @@ public class BstTest
 {
     public static void main( String[] args )
     {
-        test();
+        //test();
+        BinarySearchTree<Student> students = new BinarySearchTree<>();
+        students.add( new Student( "B", "Inf", 18 ) );
+        students.add( new Student( "C", "M", 14 ) );
+        students.add( new Student( "A", "Inf", 22 ) );
+        students.add( new Student( "E", "M", 7 ) );
+        students.add( new Student( "E", "M", 7 ) );
+        students.show();
+        //System.out.println(students.height());
+        System.out.println(students.sortedUpTo(5));
     }
 
     public static void test()

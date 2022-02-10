@@ -9,19 +9,21 @@ public class GenericsTest
 
         DoublyLinkedList<String> Empty = new DoublyLinkedList<>();
         DoublyLinkedList<String> ints = new DoublyLinkedList<>();
-        ints.add("1");
         ints.add("2");
+        ints.add("2");
+        ints.add("8");
+        ints.add("3");
         ints.add("7");
-        ints.add("4");
-        ints.add("7");
+        ints.add("8");
         ints.showAll();
         DoublyLinkedList<String> intsm = new DoublyLinkedList<>();
 
+        intsm.add("1");
+        intsm.add("2");
+        intsm.add("3");
         intsm.add("4");
-        intsm.add("4");
-        intsm.add("4");
-        intsm.add("4");
-        intsm.add("4");
+        intsm.add("6");
+        intsm.add("5");
         /*ints.positions();
         for (int elemnt: ints.positions()
              ) {
@@ -38,8 +40,10 @@ public class GenericsTest
 
         //ints.intject(intsm, 2);
         //ints.showAll();
-        ints.cutInFrontOf("7").showAll();
-        ints.showAll();
+        ints.cutInFrontOf("0").showAll();
+        //ints.showAll();
+        //System.out.println(ints.size());
+        //System.out.println(intsm.countDoubles());
     }
     
     public static void test()

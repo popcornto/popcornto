@@ -25,10 +25,12 @@ public class CharacterSearchTree {
         CharacterSearchTree current = new CharacterSearchTree(arr);
         //firstTreeTest();
         //secondTreeTest();
-        //current.show();
-        current.add('t', 5, "sheesh");
         current.show();
-
+        //current.add('t', 5, "sheesh");
+        //current.show();
+        System.out.println(current.countCharacters());
+        System.out.println(current.hasOnlyCompleteNode());
+        System.out.println(current.containsCharacter('a'));
     }
 
     public static void firstTreeTest() {
@@ -164,7 +166,8 @@ public class CharacterSearchTree {
             current.content.setCode(c);
             current.leftChild = new CharacterSearchTree();
             current.rightChild = new CharacterSearchTree();
-        }if(current.isEmpty()){
+        }
+        if (current.isEmpty()) {
             current.content = new HuffmanTriple(t, q);
             current.content.setCode(c);
             current.leftChild = new CharacterSearchTree();
@@ -172,5 +175,59 @@ public class CharacterSearchTree {
         }
     }
 
+    public int countCharacters() {
+        if (!isEmpty()) {
+            int left = leftChild.countCharacters();
+            int right = rightChild.countCharacters();
 
+
+            return content.getQuantity() + left + right;
+        } else {
+            return 0;
+        }
+    }
+
+    public HuffmanTriple minimum() {
+        if (!isEmpty()) {
+            CharacterSearchTree current = this;
+            while (!current.leftChild.isEmpty()) {
+                current = current.leftChild;
+            }
+            return current.getContent();
+        } else {
+            return null;
+        }
+    }
+
+    public boolean hasOnlyCompleteNode() {
+        if ( isEmpty() || isLeaf() )
+        {
+            return true;
+        } else {
+            if ( !( leftChild.isEmpty() || rightChild.isEmpty() ) )
+            {
+                return leftChild.hasOnlyCompleteNode() && rightChild.hasOnlyCompleteNode();
+            } else {
+                return false;
+            }
+        }
+    }
+    public boolean containsCharacter(char t){
+        if (!isEmpty()){
+            boolean left = leftChild.containsCharacter(t);
+            boolean right = rightChild.containsCharacter(t);
+            if (t < leftChild.getContent().getToken()){
+                if (leftChild.getContent().getToken() == t){
+                    return true;
+                }
+            }else{
+                if (rightChild.getContent().getToken() == t){
+                    return true;
+                }
+            }
+
+
+            return leftChild.containsCharacter(t) && rightChild.containsCharacter(t);}
+        return false;
+    }
 }

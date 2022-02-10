@@ -51,7 +51,9 @@ public class Testumgebung {
         //doubleGreaterN(testPairs, 5);
         //testPairs.show();
         bro.show();
-        testPairs.combine(bro);
+        //testPairs.combine(bro);
+        testPairs.show();
+        doubleGreaterN(testPairs, 5);
         testPairs.show();
 
 
@@ -131,9 +133,13 @@ public class Testumgebung {
         }
     }
 
+    public static void addValue(){
+
+    }
      public static IntIntPairs concat(IntIntPairs first, IntIntPairs second)
      {
          first.combine(second);
+
          return first;
      }
 }

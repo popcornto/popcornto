@@ -308,26 +308,95 @@ public class DoublyLinkedList<T> {
 
     public DoublyLinkedList<T> cutInFrontOf(T obj) {
         if (!isEmpty()) {
+            boolean contains = false;
             Element current = first;
-            DoublyLinkedList<T> newList = new DoublyLinkedList<>();
-            if (current.hasSucc()) {
-                while (current != null && !current.getContent().equals(obj)) {
-                    newList.add(current.getContent());
-                    current = current.getSucc();
+            while (current != null) {
+                if (current.getContent().equals(obj)) {
+                    contains = true;
+                    break;
                 }
+                current = current.getSucc();
             }
-            current = first;
-            if (current.hasSucc()) {
-                while (current != null && !current.getContent().equals(obj)) {
-                    current = current.getSucc();
+            if (contains) {
+                current = first;
+                DoublyLinkedList<T> newList = new DoublyLinkedList<>();
+                if (current.hasSucc()) {
+                    while (current != null && !current.getContent().equals(obj)) {
+                        newList.add(current.getContent());
+                        current = current.getSucc();
+                    }
                 }
-                if (current.hasPred()) {
-                    current.disconnectPred();
+                current = first;
+                if (current.hasSucc()) {
+                    while (current != null && !current.getContent().equals(obj)) {
+                        current = current.getSucc();
+                        size--;
+                    }
+                    if (current.hasPred()) {
+                        current.disconnectPred();
+                    }
+                    first = current;
+                    return newList;
                 }
-                first = current;
-                return newList;
             }
         }
         return new DoublyLinkedList<>();
     }
+
+    public int countDoubles() {
+        int count = 0;
+        if (!isEmpty()) {
+            if (size >= 2) {
+                Element current = first;
+                DoublyLinkedList<T> listOfDoubles = new DoublyLinkedList<>();
+                while (current != null) {
+                    int counter = 0;
+                    Element next = first;
+                    boolean existsPreviosly = false;
+                    while (next != null) {
+
+                        if (current.getContent().equals(next.getContent())) {
+                            counter++;
+                        }
+
+                        next = next.getSucc();
+                    }
+                    Element currentNew = listOfDoubles.first;
+                    while (!listOfDoubles.isEmpty() && currentNew != null) {
+                        if (currentNew.getContent().equals(current.getContent())) {
+                            existsPreviosly = true;
+                        }
+                        currentNew = currentNew.getSucc();
+                    }
+                    if (counter == 2 && !existsPreviosly) {
+                        listOfDoubles.add(current.getContent());
+                        count++;
+                    }
+                    current = current.getSucc();
+                }
+            }
+        }
+        return count;
+    }
+
+    public int countdoubles() {
+        int result = 0;
+        Element current = first;
+        while (current != null) {
+            Element current1 = first;
+            int count = 0;
+            while (current != null) {
+                if (current.getContent().equals(current1.getContent())) {
+                    count++;
+                }
+                current1 = current1.getSucc();
+            }
+            if (count == 2) {
+                result++;
+            }
+            current = current.getSucc();
+        }
+        return result / 2;
+    }
 }
+
