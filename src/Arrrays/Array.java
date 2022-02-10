@@ -1,5 +1,8 @@
 package Arrrays;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 public class Array {
     public static int countNegatives(int[] arr) {
         int count = 0;
@@ -11,7 +14,7 @@ public class Array {
     }
 
     public static void main(String[] args) {
-        //int[] asdffg = {5 ,17 ,88,88 ,3 ,5};
+        int[] asdffg = {5, 17, 88, 88, 3, 5};
         int[] aref = {80, 0, 1, 0, 1, 80};
         int[] ass = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 34, 54, 5};
         //System.out.println(sumUpNegatives(new int[]{-1,1,-2,3,-4}));
@@ -38,8 +41,10 @@ public class Array {
         }*/
 
         //System.out.println(countSequences(Arrrays.aref));
-        System.out.println(towtimes(aref));
+        //System.out.println(towtimes(aref));
 
+        System.out.println(BiggerThan(ass, 5));
+        //Arrays.asList(aref);
 
     }
 
@@ -245,7 +250,7 @@ public class Array {
 
         if (two) {
             for (int i = 0; i < arr.length; i++) {
-                for (int j = 1 ; j<copyarray.length-1; j++) {
+                for (int j = 1; j < copyarray.length - 1; j++) {
                     if (copyarray[j] == arr[i]) {
                         count++;
                     }
@@ -259,6 +264,49 @@ public class Array {
 
         }
         return two;
+    }
+
+    public static int BiggerThan(int[] arr, int p) {
+        boolean exists = false;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == p) {
+                exists = true;
+                break;
+
+            }
+        }
+        if (exists == true) {
+            int biggerThan = 0;
+            int k = 0;
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] > p) {
+                    biggerThan++;
+                }
+            }
+            int[] newArray = new int[biggerThan];
+            for (int j = 0; j < newArray.length; j++) {
+                while (k < arr.length) {
+                    if (arr[k] > p) {
+                        newArray[j] = arr[k];
+                        k++;
+                        break;
+                    } else {
+                        k++;
+                    }
+                }
+            }
+            int min = newArray[0];
+            for (int i = 0; i < newArray.length - 1; i++) {
+                if (newArray[i] < min) {
+                    min = newArray[i];
+                } else if (newArray[i + 1] < min) {
+                    min = newArray[i + 1];
+                }
+            }
+            return min;
+        } else {
+            throw new IllegalStateException();
+        }
     }
 
 }

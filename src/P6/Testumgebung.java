@@ -10,17 +10,20 @@ public class Testumgebung
     public static void testDoublyLinkedList()
     {
         DoublyLinkedList integers = new DoublyLinkedList();
-        Object[] arr = new Object[9];
-        Object five = 5;
+        DoublyLinkedList bre = new DoublyLinkedList();
         integers.add( 1 );
-        integers.add( 5 );
-        integers.add( 5 );
+        integers.add( 2 );
+        integers.add( 3 );
         integers.add( 4 );
         integers.add( 6 );
-        integers.add( 5 );
+        integers.add( 0 );
         integers.add( 8 );
         integers.add( 3);
-        //integers.showAll();
+        bre.add( 6 );
+        bre.add( 0 );
+        bre.add( 8 );
+        bre.add( 3);
+        integers.showAll();
         //integers.clear();
         //integers.showAll();
         //System.out.println(integers.getLast());
@@ -30,15 +33,11 @@ public class Testumgebung
         //System.out.println(integers.containsDouble());
         //integers.insert(0, 5);
         //integers.showAll();
-        /*integers.toArray(arr);
-        for (Object element:arr
-             ) {
-            System.out.print(element);
-        }*/
-        //integers.flip().showAll();
-        //integers.remove(0);
+        integers.concat(bre);
         integers.showAll();
-        integers.remove(five);
-        integers.showAll();
+
+
+
+
     }
 }

@@ -8,7 +8,7 @@ public class Robots {
     String kilo = " Kilogramms";
     Robots lookingat;
 
-    Robots(String name, String color , int weight){
+    public Robots(String name, String color , int weight){
         this.name=name;
         this.color=color;
         this.weight=weight;

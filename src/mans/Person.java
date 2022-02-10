@@ -1,6 +1,6 @@
 package mans;
 
-public class Person {
+public class Person extends Robots{
 
     boolean sitting;
     String personality;
@@ -9,7 +9,8 @@ public class Person {
     Robots robotowned;
     Robots arefriends;
 
-    Person(boolean  b, String  p, String  n){
+    Person(String name,String color, int weight, boolean  b, String  p, String  n){
+        super(name, color, weight);
         this.name = n;
         this.personality=p;
         this.sitting=b;
@@ -23,8 +24,8 @@ public class Person {
     public static void main(String[] args) {
         Robots r1 =new Robots("bob", "black", 69);
         Robots r2 = new Robots("tom" , "red" , 42);
-        Person p1 = new Person(false , "nice" , "Alena" );
-        p1.standup();
+        Person p1 = new Person("bob","black", 69, false , "nice" , "Alena" );
+        p1.introduceSelf();
         p1.robotowned=r1;
         p1.robotowned.introduceSelf();
 

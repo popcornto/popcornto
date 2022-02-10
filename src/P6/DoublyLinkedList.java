@@ -177,63 +177,16 @@ public class DoublyLinkedList {
             first = neu;
             size++;
         }
+
     }
 
-    public void toArray(Object[] arr) {
-        Element current = first;
-        for (int i = 0; i < arr.length; i++) {
-            if (current != null) {
-                arr[i] = current.getContent();
-                current = current.getSucc();
-            } else {
-                arr[i] = null;
-            }
-        }
-    }
-
-    public DoublyLinkedList flip() {
-        DoublyLinkedList flippedList = new DoublyLinkedList();
-        Element current = last;
-        while (current != null) {
-            flippedList.add(current.getContent());
-            current = current.getPred();
-        }
-        return flippedList;
-    }
-
-    public void remove(int n) {
-        Element current = first;
-        if (n == 0 && !isEmpty()) {
-            first = current.getSucc();
-            return;
-        }
+    public void concat(DoublyLinkedList dll) {
         if (!isEmpty()) {
-            for (int i = 0; i < n; i++) {
-                current = current.getSucc();
-            }
-            Element pred = current.getPred();
-            Element succ = current.getSucc();
-            pred.disconnectSucc();
-            succ.disconnectPred();
-            pred.connectAsSucc(succ);
-            succ.connectAsSucc(pred);
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
+            last.connectAsSucc(dll.first);
+            dll.first.connectAsPred(last);
+            last = dll.last;
         }
     }
 
-    public void remove(Object obj) {
-        Element current = first;
-        Element pred = current.getPred();
-        Element succ = current.getSucc();
-        while (!isEmpty() && current != null) {
-            if (current.getContent().equals(obj)) {
-                pred.disconnectSucc();
-                succ.disconnectPred();
-                pred.connectAsSucc(succ);
-                succ.connectAsPred(pred);
-            }
-            current = succ;
-        }
-    }
+
 }

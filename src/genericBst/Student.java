@@ -1,5 +1,6 @@
-package asd;
-public class Student
+package genericBst;
+
+public class Student extends Comparable<Student>
 {
     private String name;
     private String subject;
@@ -32,23 +33,8 @@ public class Student
         return registrationNo;
     }
 
-    public boolean hasGreaterNumber( Student s )
+    public int compareTo( Student s )
     {
-        return getRegistrationNo() > s.getRegistrationNo();
-    }
-
-    public boolean hasEqualNumber( Student s )
-    {
-        return getRegistrationNo() == s.getRegistrationNo();
-    }
-
-    public boolean hasGreaterName( Student s )
-    {
-        return getName().compareTo( s.getName() ) > 0;
-    }
-
-    public boolean hasEqualName( Student s )
-    {
-        return getName().compareTo( s.getName() ) == 0;
+        return getRegistrationNo() - s.getRegistrationNo();
     }
 }

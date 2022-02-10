@@ -1,38 +1,37 @@
-package asd;
-
+package Iterator;
 public class Fraction
 {
     private int numerator;      // Zaehler
     private int denominator;    // Nenner
 
-    public Fraction ( int num, int denom )
+    public Fraction ( int num, int denom ) 
     {
-        if ( denom != 0 )
+        if ( denom != 0 ) 
         {
-            if ( denom < 0 )
+            if ( denom < 0 ) 
             {
                 numerator = -num;
                 denominator = -denom;
             }
-            else
+            else 
             {
                 numerator = num;
                 denominator = denom;
             }
             reduce();
-        }
-        else
+        } 
+        else 
         {
             // error: division by zero
             throw new IllegalArgumentException();
         }
-    }
+    } 
 
-    public Fraction()
+    public Fraction() 
     {
         numerator = 0;
         denominator = 1;
-    }
+    } 
 
     public Fraction( int num )
     {
@@ -40,7 +39,7 @@ public class Fraction
         denominator = 1;
     }
 
-    public String toString()
+    public String toString() 
     {
         return numerator + " / " + denominator;
     }
@@ -88,14 +87,14 @@ public class Fraction
 
     public Fraction clone() {
         return new Fraction( numerator, denominator );
-    }
+    }    
 
-    public boolean equals( Fraction other )
+    public boolean equals( Fraction other ) 
     {
         return numerator == other.numerator & denominator == other.denominator;
     }
 
-    private void reduce()
+    private void reduce() 
     {
         if ( numerator != 0 )
         {
@@ -103,12 +102,12 @@ public class Fraction
             numerator /= gcd;
             denominator /= gcd;
         }
-        else
+        else 
         {
             denominator = 1;
         }
     }
-
+    
     public int calculateGcd()
     {
         int value1 = Math.abs( numerator );
