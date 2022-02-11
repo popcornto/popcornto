@@ -15,8 +15,8 @@ public class Array {
 
     public static void main(String[] args) {
         int[] asdffg = {5, 17, 88, 88, 3, 5};
-        int[] aref = {80, 0, 1, 0, 1, 80};
-        int[] ass = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 34, 54, 5};
+        int[] aref = {80,2,0};
+        int[] ass = {66, 66, 99, 6, 6, 6, 6, 6, 6, 6, 6, 1, 77, 77, 77};
         //System.out.println(sumUpNegatives(new int[]{-1,1,-2,3,-4}));
         //System.out.println(countNegatives(new int[]{1,6,9,5,4,6,8,5,3}));
         //System.out.println(maximum(new int[]{1,6,9,3,6,2,4}));
@@ -43,8 +43,9 @@ public class Array {
         //System.out.println(countSequences(Arrrays.aref));
         //System.out.println(towtimes(aref));
 
-        System.out.println(BiggerThan(ass, 5));
+        //System.out.println(BiggerThan(ass, 5));
         //Arrays.asList(aref);
+        System.out.println(between(aref, 2));
 
     }
 
@@ -307,6 +308,45 @@ public class Array {
         } else {
             throw new IllegalStateException();
         }
+    }
+    public static int between(int[] arr, int n){
+        int count = 0;
+        int maxIndex = 0;
+        int max = arr[0];
+        int minIndex = 0;
+        int min = arr[0];
+        //Index von max bestimmen
+
+        System.out.println(Arrays.stream(arr).max().stream());
+        for (int i = 0;i<arr.length;i++){
+            if (max < arr[i]){
+                max = arr[i];
+                maxIndex = i;
+            }
+        }
+        //Index von min bestimmen
+        for (int i = 0;i<arr.length;i++){
+            if (min > arr[i]){
+                min = arr[i];
+                minIndex = i;
+            }
+        }
+        //wenn max kleiner ist als min fangen wir bei max an
+        if (maxIndex < minIndex){
+            for (int i = maxIndex+1; i<minIndex;i++){
+                if (arr[i] == n){
+                    count++;
+                }
+            }
+            //wenn min kleiner ist als min fangen wir bei min an
+        }else if (maxIndex > minIndex){
+            for (int i = maxIndex+1; i<minIndex;i++){
+                if (arr[i] == n){
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 }

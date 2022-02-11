@@ -134,22 +134,82 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public int sortedUpTo(int n) {
-        if (!isEmpty()) {
-            if (n <= 0) {
-                return 0;
-            } else {
+        if (!isEmpty() && n > 0) {
+            if (size() > n) {
                 if (leftChild.isEmpty()) {
-                    leftChild = null;
-                    return 1 + leftChild.sortedUpTo(n - 1);
+                    System.out.println(getContent());
+                }
+                if (!leftChild.isEmpty()) {
+
+                    return leftChild.sortedUpTo(n);
                 } else {
-                    if (rightChild.isEmpty()){
-                    rightChild = null;
-                    return 1 + rightChild.sortedUpTo(n - 1);}
+                    return rightChild.sortedUpTo(n);
+                }
+            } else {
+                if (!isEmpty()) {
+                    this.show();
+                }
+            }
+
+        }
+        return 0;
+    }
+
+    public int countNodes(int top, int bottom) {
+        if (top <= bottom && !isEmpty()) {
+            if (top < bottom) {
+                if (top < 0 && bottom < 1) {
+                    return 0;
+                } else {
+                    if (top >= 0 && bottom >= 1) {
+                        if (!isEmpty()) {
+                            return 1 + leftChild.countNodes(top-1, bottom - 1) + rightChild.countNodes(top-1, bottom - 1);
+                        } else {
+                            return leftChild.countNodes(top, bottom - 1) + rightChild.countNodes(top, bottom - 1);
+                        }
+                    }
                 }
             }
         }
-            return 0;
+        return 0;
     }
+    public int countNodesBetween(int top, int bottom){
+        if(top <= bottom && !isEmpty()){
+            if(top > 0){
+                return leftChild.countNodesBetween(top-1,bottom-1) + rightChild.countNodesBetween(top-1,bottom-1);
+            } else {
+                if(bottom > 0){
+                    return 1 + leftChild.countNodesBetween(top,bottom-1) + rightChild.countNodesBetween(top, bottom-1);
+                } else {
+                    return 1;
 
+                }
+            }
+        } else {
+            return 0;
+        }
+    }
+public int completeLevels(){
+        if (isEmpty()){
+            return 0;
+        }else{
 
+            int left = leftChild.completeLevels();
+            int right = rightChild.completeLevels();
+
+            if (left >= 1 && right >= 1 ) {
+                return 1 + left + right;
+            }else{
+                if (!rightChild.isEmpty() && !leftChild.isEmpty()){
+                    return 1;
+                }else{
+                    return 0;
+                }
+            }
+
+        }
 }
+}
+
+
+

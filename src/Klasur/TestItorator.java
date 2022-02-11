@@ -1,18 +1,16 @@
-package Iterator;
+package Klasur;
 
-import Klasur.Comparable;
-import Klasur.Iterable;
-
-
-public class IteratorTest
-{
-
-    public static void main( String[] args )
-    {
+public class TestItorator {
+    public static void main(String[] args) {
         //testIterator();
+        DoublyLinkedList ints = new DoublyLinkedList();
+        ints.add( 5 );
+        ints.add( 6 );
+        ints.add( 9 );
+        ints.showAll();
+
 
     }
-
     public static void testIterator()
     {
         DoublyLinkedList studs = new DoublyLinkedList();
@@ -36,12 +34,12 @@ public class IteratorTest
         ints.add( 6 );
         ints.add( 9 );
         ints.showAll();
-        
+
         Iterator intsIterator = ints.iterator();
         while ( intsIterator.hasNext() )
         {
             System.out.println( intsIterator.next().toString() );
         }
 
-     }
+    }
 }

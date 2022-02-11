@@ -398,5 +398,30 @@ public class DoublyLinkedList<T> {
         }
         return result / 2;
     }
+
+    public int longestSequence() {
+        if (!isEmpty()) {
+            int longest = 1;
+            int tempLongest = 1;
+            int count = 1;
+            Element current = first;
+            while (current != null && current.hasSucc()) {
+                if (current.getContent().equals(current.getSucc().getContent())) {
+                    count++;
+                } else if (!current.getContent().equals(current.getSucc().getContent())){
+                    count = 1;
+                }
+                tempLongest = count;
+                if (tempLongest > longest) {
+                    longest = tempLongest;
+                }
+                current = current.getSucc();
+            }
+            return longest;
+        } else {
+            return 0;
+        }
+    }
+
 }
 
