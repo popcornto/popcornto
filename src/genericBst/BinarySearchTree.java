@@ -163,7 +163,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
                 } else {
                     if (top >= 0 && bottom >= 1) {
                         if (!isEmpty()) {
-                            return 1 + leftChild.countNodes(top-1, bottom - 1) + rightChild.countNodes(top-1, bottom - 1);
+                            return 1 + leftChild.countNodes(top - 1, bottom - 1) + rightChild.countNodes(top - 1, bottom - 1);
                         } else {
                             return leftChild.countNodes(top, bottom - 1) + rightChild.countNodes(top, bottom - 1);
                         }
@@ -173,13 +173,14 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         return 0;
     }
-    public int countNodesBetween(int top, int bottom){
-        if(top <= bottom && !isEmpty()){
-            if(top > 0){
-                return leftChild.countNodesBetween(top-1,bottom-1) + rightChild.countNodesBetween(top-1,bottom-1);
+
+    public int countNodesBetween(int top, int bottom) {
+        if (top <= bottom && !isEmpty()) {
+            if (top > 0) {
+                return leftChild.countNodesBetween(top - 1, bottom - 1) + rightChild.countNodesBetween(top - 1, bottom - 1);
             } else {
-                if(bottom > 0){
-                    return 1 + leftChild.countNodesBetween(top,bottom-1) + rightChild.countNodesBetween(top, bottom-1);
+                if (bottom > 0) {
+                    return 1 + leftChild.countNodesBetween(top, bottom - 1) + rightChild.countNodesBetween(top, bottom - 1);
                 } else {
                     return 1;
 
@@ -189,27 +190,66 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return 0;
         }
     }
-public int completeLevels(){
-        if (isEmpty()){
+
+    public int completeLevels() {
+        if (isEmpty()) {
             return 0;
-        }else{
+        } else {
 
             int left = leftChild.completeLevels();
             int right = rightChild.completeLevels();
 
-            if (left >= 1 && right >= 1 ) {
+            if (left >= 1 && right >= 1) {
                 return 1 + left + right;
-            }else{
-                if (!rightChild.isEmpty() && !leftChild.isEmpty()){
+            } else {
+                if (!rightChild.isEmpty() && !leftChild.isEmpty()) {
                     return 1;
-                }else{
+                } else {
                     return 0;
                 }
             }
 
         }
+    }
+
+    public boolean onLevel(Student obj, int level) {
+        if (!isEmpty() && level >= 0) {
+            if (level == 0) {
+                if (getContent().equals(obj)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return leftChild.onLevel(obj, level - 1) || rightChild.onLevel(obj, level - 1);
+            }
+        } else {
+            return false;
+        }
+    }
+    public boolean rightComplete() {
+        if (!isEmpty() || isLeaf()){
+            return true;
+        }else {
+            if (!isLeaf() && rightChild.isEmpty()){
+                return false;
+            }
+            return leftChild.rightComplete() && rightChild.rightComplete();
+        }
+    }
+    public int shortest(){
+        if (isEmpty()){
+            return 0;
+        }else{
+            if (!isLeaf()){
+                return 1 + leftChild.shortest() + rightChild.shortest();
+            }else{
+               return 0 + leftChild.shortest() + rightChild.shortest();
+            }
+        }
+    }
 }
-}
+
 
 
 

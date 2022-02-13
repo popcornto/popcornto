@@ -33,6 +33,10 @@ public class Student extends Comparable<Student>
         return registrationNo;
     }
 
+    public boolean equals(Student other){
+        return getRegistrationNo() == other.getRegistrationNo();
+    }
+
     public int compareTo( Student s )
     {
         return getRegistrationNo() - s.getRegistrationNo();

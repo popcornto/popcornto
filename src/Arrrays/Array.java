@@ -14,9 +14,9 @@ public class Array {
     }
 
     public static void main(String[] args) {
-        int[] asdffg = {5, 17, 88, 88, 3, 5};
+        int[] asdffg = {8, 6, 88, 4, 3, 5};
         int[] aref = {80,2,0};
-        int[] ass = {66, 66, 99, 6, 6, 6, 6, 6, 6, 6, 6, 1, 77, 77, 77};
+        int[] ass = {66, 8, 99, 6, 6, 6, 6, 6, 6, 6, 6, 1, 77, 2, 4};
         //System.out.println(sumUpNegatives(new int[]{-1,1,-2,3,-4}));
         //System.out.println(countNegatives(new int[]{1,6,9,5,4,6,8,5,3}));
         //System.out.println(maximum(new int[]{1,6,9,3,6,2,4}));
@@ -45,8 +45,8 @@ public class Array {
 
         //System.out.println(BiggerThan(ass, 5));
         //Arrays.asList(aref);
-        System.out.println(between(aref, 2));
-
+        //System.out.println(between(aref, 2));
+        System.out.println(elemsBetween(asdffg));
     }
 
     //System.out.println(doubleifcontainspositive(new int[]{1,6,3,3,6,2,4}));
@@ -348,5 +348,33 @@ public class Array {
         }
         return count;
     }
-
+    public static int elemsBetween(int[] all){
+        int count = 0;
+        int firstmaxIndex = 0;
+        int firstmax = all[0];
+        int secondmaxIndex = 0;
+        int secondmax = all[0];
+        
+        for (int i = 0; i<all.length;i++){
+            if (firstmax<all[i]){
+                firstmaxIndex = i;
+                firstmax = all[i];
+            }
+        }
+        for (int i = 0; i < all.length; i++) {
+            if (secondmax < all[i] && all[i] < firstmax){
+                secondmaxIndex = i;
+                secondmax = all[i];
+            }
+        }
+        if (firstmaxIndex > secondmaxIndex){
+        for (int i = secondmaxIndex; i < firstmaxIndex-1; i++) {
+            count++;
+        }}else if (firstmaxIndex < secondmaxIndex){
+            for (int i = firstmaxIndex; i < secondmaxIndex-1; i++) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

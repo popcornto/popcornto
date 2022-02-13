@@ -6,17 +6,19 @@ public class BstTest
     {
         //test();
         BinarySearchTree<Student> students = new BinarySearchTree<>();
-        students.add( new Student( "B", "Inf", 6 ) );
-        students.add( new Student( "C", "M", 4 ) );
-        students.add( new Student( "A", "Inf", 8) );
-        students.add( new Student( "A", "Inf", 3) );
-        students.add( new Student( "A", "Inf", 7) );
-        students.add( new Student( "A", "Inf", 0) );
+        students.add( new Student( "C", "M", 5 ) );
+        students.add( new Student( "A", "Inf", 6 ) );
+        students.add( new Student( "E", "M", 1 ) );
+        students.add( new Student( "E", "M", 8 ) );
+        students.add( new Student( "E", "M", 9 ) );
+
         students.show();
         //students.show();
         //System.out.println(students.height());
         //System.out.println(students.countNodes(0, 2));
-        System.out.println(students.completeLevels());
+        //System.out.println(students.completeLevels());
+        //System.out.println(students.onLevel(st, 1));
+        System.out.println(students.shortest());
     }
 
     public static void test()

@@ -11,11 +11,8 @@ public class IteratorTest {
         intsmsad.add( 5 );
         intsmsad.add( 6 );
         intsmsad.add( 9 );
-        Klasur.Iterator it = intsmsad.iterator();
-        while (it.hasNext()){
-            System.out.println(it.next());
-        }
-        System.out.println(hasSmaller(intsmsad, 5));
+
+
 
 
     }
@@ -27,8 +24,8 @@ public class IteratorTest {
             System.out.println( it.next() );
         }
     }
-    public static <T extends Comparable<T>> boolean hasSmaller(DoublyLinkedList<T> all, T obj){
-        Klasur.Iterator<T> current = all.iterator();
+    public static <T extends Comparable<T>> boolean hasSmaller(Iterable<T> all, T obj){
+        Iterator<T> current = (Iterator<T>) all.iterator();
         int count = 0;
         while (current.hasNext()){
 
@@ -43,7 +40,6 @@ public class IteratorTest {
             return false;
         }
     }
-
-}
 */
 }
+

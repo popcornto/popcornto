@@ -8,20 +8,26 @@ public class GenericsTest
     {
         DoublyLinkedList<String> ints = new DoublyLinkedList<>();
         ints.add("2");
+        ints.add("2"); //delFirstpred
         ints.add("2");
         ints.add("2");
         ints.add("2");
-        ints.add("2");
+        ints.add("9"); //dellastSucc
         ints.add("3");
-        ints.showAll();
+        ints.add("3");
+        ints.add("3");
+        ints.add("3");
+        ints.add("3");
+        //ints.showAll();
         DoublyLinkedList<String> intsm = new DoublyLinkedList<>();
-
-        intsm.add("6");
-        intsm.add("6");
-        intsm.add("2");
-        intsm.add("2");
-        intsm.add("2");
-        intsm.add("5");
+        intsm.add("3");
+        intsm.add("3");
+        intsm.add("3");
+        intsm.add("3");
+        intsm.add("3");
+        intsm.add("4");
+        intsm.add("9");
+        //intsm.showAll();
         /*ints.positions();
         for (int elemnt: ints.positions()
              ) {
@@ -42,7 +48,15 @@ public class GenericsTest
         //ints.showAll();
         //System.out.println(ints.size());
         //System.out.println(intsm.countDoubles());
-        System.out.println(intsm.longestSequence());
+        //System.out.println(intsm.longestSequence());
+        //System.out.println(ints.allEqual(intsm));
+        //ints.moveToHead(3);
+        //ints.showAll();
+        //System.out.println(ints.unequals(intsm));
+        //ints.pack();
+        ints.showAll();
+        System.out.println(ints.cutRange(5, ints.size()-1));
+        ints.showAll();
     }
     
     public static void test()
