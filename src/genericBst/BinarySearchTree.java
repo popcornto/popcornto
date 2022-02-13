@@ -1,5 +1,8 @@
 package genericBst;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class BinarySearchTree<T extends Comparable<T>> {
     private T content;
     private BinarySearchTree<T> leftChild, rightChild;
@@ -81,38 +84,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
             list.add(content);
             rightChild.toList(list);
         }
-    }
-
-    private class StackBasedIterator extends Iterator<T> {
-        private Stack<BinarySearchTree<T>> nodes;
-
-        public StackBasedIterator() {
-            nodes = new Stack<BinarySearchTree<T>>();
-            descendLeftAndPush(BinarySearchTree.this);
-        }
-
-        public T next() {
-            if (hasNext()) {
-                T content = nodes.peek().getContent();
-                descendLeftAndPush(nodes.pop().rightChild);
-                return content;
-            } else {
-                throw new IllegalStateException();
-            }
-        }
-
-        public boolean hasNext() {
-            return !nodes.isEmpty();
-        }
-
-        private void descendLeftAndPush(BinarySearchTree<T> root) {
-            BinarySearchTree<T> current = root;
-            while (!current.isEmpty()) {
-                nodes.push(current);
-                current = current.leftChild;
-            }
-        }
-
     }
 
     public Iterator<T> iterator() {
@@ -227,6 +198,145 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return false;
         }
     }
+
+    public boolean rightComplete() {
+        if (!isEmpty() || isLeaf()) {
+            return true;
+        } else {
+            if (!isLeaf() && rightChild.isEmpty()) {
+                return false;
+            }
+            return leftChild.rightComplete() && rightChild.rightComplete();
+        }
+    }
+
+    public int shortest() {
+        if (isEmpty()) {
+            return 0;
+        } else {
+            if (!isLeaf()) {
+                return 1 + leftChild.shortest() + rightChild.shortest();
+            } else {
+                return 0 + leftChild.shortest() + rightChild.shortest();
+            }
+        }
+    }
+
+    public int deleteLeavesAbove(int level) {
+        if (level < 0 || isEmpty()) {
+            return 0;
+        } else {
+            if (level > 0) {
+                if (isLeaf()) {
+                    content = null;
+                    return 1;
+                } else {
+                    return leftChild.deleteLeavesAbove(level - 1) + rightChild.deleteLeavesAbove(level - 1);
+                }
+            } else return 0;
+        }
+    }
+
+    public void allInner(List<T> collect) {
+        if (!isEmpty()) {
+            if (!isLeaf()) {
+                collect.add(getContent());
+                leftChild.allInner(collect);
+                rightChild.allInner(collect);
+            }
+        }
+    }
+
+    public boolean pathCheck(T obj, T target, boolean found) {
+        if (!isEmpty()) {
+            if (!content.equals(target)) {
+                if (content.equals(obj)) {
+                    found = true;
+                    return found;
+                } else if (content.equals(target) && content.equals(obj)) {
+                    found = true;
+                    return found;
+                } else {
+                    return found || leftChild.pathCheck(obj, target, false) || rightChild.pathCheck(obj, target, false);
+                }
+            }
+        } else {
+            return found;
+        }
+        return found;
+    }
+    public boolean pathsCheck(T obj, T target, boolean found) {
+        if (!isEmpty()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    private class StackBasedIterator extends Iterator<T> {
+        private Stack<BinarySearchTree<T>> nodes;
+
+        public StackBasedIterator() {
+            nodes = new Stack<BinarySearchTree<T>>();
+            descendLeftAndPush(BinarySearchTree.this);
+        }
+
+        public T next() {
+            if (hasNext()) {
+                T content = nodes.peek().getContent();
+                descendLeftAndPush(nodes.pop().rightChild);
+                return content;
+            } else {
+                throw new IllegalStateException();
+            }
+        }
+
+        public boolean hasNext() {
+            return !nodes.isEmpty();
+        }
+
+        private void descendLeftAndPush(BinarySearchTree<T> root) {
+            BinarySearchTree<T> current = root;
+            while (!current.isEmpty()) {
+                nodes.push(current);
+                current = current.leftChild;
+            }
+        }
+
+    }
+
+/*
+* public static void main(String[] args) {
+        genericBst.BinarySearchTree<genericBst.Student> students = new genericBst.BinarySearchTree<>();
+        genericBst.Student st = new genericBst.Student("E", "M", 8);
+        students.add(new genericBst.Student("C", "M", 4));
+        students.add(new Student("A", "Inf", 22));
+        students.add(st);
+        students.show();
+        //students.show();
+        //System.out.println(students.height());
+        //System.out.println(students.countNodes(0, 2));
+        //System.out.println(students.completeLevels());
+        System.out.println(students.onLevel(st, 2));
+    }
+
+    public boolean onLevel(T obj, int level) {
+        if (!isEmpty() && level >= 0) {
+            if (level == 0) {
+                if (getContent().equals(obj)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return leftChild.onLevel(obj, level - 1) || rightChild.onLevel(obj, level - 1);
+            }
+        } else {
+            return false;
+        }
+    }
+
     public boolean rightComplete() {
         if (!isEmpty() || isLeaf()){
             return true;
@@ -242,12 +352,13 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return 0;
         }else{
             if (!isLeaf()){
-                return 1 + leftChild.shortest() + rightChild.shortest();
-            }else{
-               return 0 + leftChild.shortest() + rightChild.shortest();
+                return 0 + leftChild.shortest() + rightChild.shortest();
+            }else if (isLeaf()){
+                return 1+ leftChild.shortest() + rightChild.shortest();
             }
         }
-    }
+        return 1 + leftChild.shortest() + rightChild.shortest();
+    }*/
 }
 
 

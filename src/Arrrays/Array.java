@@ -15,7 +15,7 @@ public class Array {
 
     public static void main(String[] args) {
         int[] asdffg = {8, 6, 88, 4, 3, 5};
-        int[] aref = {80,2,0};
+        int[] aref = {80, 2, 0};
         int[] ass = {66, 8, 99, 6, 6, 6, 6, 6, 6, 6, 6, 1, 77, 2, 4};
         //System.out.println(sumUpNegatives(new int[]{-1,1,-2,3,-4}));
         //System.out.println(countNegatives(new int[]{1,6,9,5,4,6,8,5,3}));
@@ -239,7 +239,7 @@ public class Array {
         return up;
     }
 
-    public static boolean towtimes(int[] arr) {
+    public static boolean twotimes(int[] arr) {
         int count = 0;
         int[] copyarray = arr;
         boolean two = false;
@@ -309,7 +309,8 @@ public class Array {
             throw new IllegalStateException();
         }
     }
-    public static int between(int[] arr, int n){
+
+    public static int between(int[] arr, int n) {
         int count = 0;
         int maxIndex = 0;
         int max = arr[0];
@@ -317,61 +318,62 @@ public class Array {
         int min = arr[0];
         //Index von max bestimmen
 
-        System.out.println(Arrays.stream(arr).max().stream());
-        for (int i = 0;i<arr.length;i++){
-            if (max < arr[i]){
+        for (int i = 0; i < arr.length; i++) {
+            if (max < arr[i]) {
                 max = arr[i];
                 maxIndex = i;
             }
         }
         //Index von min bestimmen
-        for (int i = 0;i<arr.length;i++){
-            if (min > arr[i]){
+        for (int i = 0; i < arr.length; i++) {
+            if (min > arr[i]) {
                 min = arr[i];
                 minIndex = i;
             }
         }
         //wenn max kleiner ist als min fangen wir bei max an
-        if (maxIndex < minIndex){
-            for (int i = maxIndex+1; i<minIndex;i++){
-                if (arr[i] == n){
+        if (maxIndex < minIndex) {
+            for (int i = maxIndex + 1; i < minIndex; i++) {
+                if (arr[i] == n) {
                     count++;
                 }
             }
             //wenn min kleiner ist als min fangen wir bei min an
-        }else if (maxIndex > minIndex){
-            for (int i = maxIndex+1; i<minIndex;i++){
-                if (arr[i] == n){
+        } else if (maxIndex > minIndex) {
+            for (int i = maxIndex + 1; i < minIndex; i++) {
+                if (arr[i] == n) {
                     count++;
                 }
             }
         }
         return count;
     }
-    public static int elemsBetween(int[] all){
+
+    public static int elemsBetween(int[] all) {
         int count = 0;
         int firstmaxIndex = 0;
         int firstmax = all[0];
         int secondmaxIndex = 0;
         int secondmax = all[0];
-        
-        for (int i = 0; i<all.length;i++){
-            if (firstmax<all[i]){
+
+        for (int i = 0; i < all.length; i++) {
+            if (firstmax < all[i]) {
                 firstmaxIndex = i;
                 firstmax = all[i];
             }
         }
         for (int i = 0; i < all.length; i++) {
-            if (secondmax < all[i] && all[i] < firstmax){
+            if (secondmax < all[i] && all[i] < firstmax) {
                 secondmaxIndex = i;
                 secondmax = all[i];
             }
         }
-        if (firstmaxIndex > secondmaxIndex){
-        for (int i = secondmaxIndex; i < firstmaxIndex-1; i++) {
-            count++;
-        }}else if (firstmaxIndex < secondmaxIndex){
-            for (int i = firstmaxIndex; i < secondmaxIndex-1; i++) {
+        if (firstmaxIndex > secondmaxIndex) {
+            for (int i = secondmaxIndex; i < firstmaxIndex - 1; i++) {
+                count++;
+            }
+        } else if (firstmaxIndex < secondmaxIndex) {
+            for (int i = firstmaxIndex; i < secondmaxIndex - 1; i++) {
                 count++;
             }
         }

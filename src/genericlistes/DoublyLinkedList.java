@@ -343,10 +343,10 @@ public class DoublyLinkedList<T> {
         return new DoublyLinkedList<>();
     }
 
-    public int countDoubles() {
+    public int countA(int a) {
         int count = 0;
         if (!isEmpty()) {
-            if (size >= 2) {
+            if (size >= a) {
                 Element current = first;
                 DoublyLinkedList<T> listOfDoubles = new DoublyLinkedList<>();
                 while (current != null) {
@@ -368,7 +368,7 @@ public class DoublyLinkedList<T> {
                         }
                         currentNew = currentNew.getSucc();
                     }
-                    if (counter == 2 && !existsPreviosly) {
+                    if (counter == a && !existsPreviosly) {
                         listOfDoubles.add(current.getContent());
                         count++;
                     }
@@ -571,6 +571,33 @@ public class DoublyLinkedList<T> {
             }
         }
         return false;
+    }
+    public void removeUnequalToFirst(){
+        if (!isEmpty() && first.getContent() != null){
+            Element current = first.getSucc();
+            while (current != null){
+                if (!first.getContent().equals(current.getContent())){
+                    if (current.getSucc() != null && current.getSucc().getSucc() != null){
+                        Element afternext = current.getSucc().getSucc();
+                        current.disconnectSucc();
+                        afternext.disconnectPred();
+                        current.connectAsSucc(afternext);
+                        current = current.getSucc();
+                    }else{
+                        if (!first.getContent().equals(current.getContent())){
+                            if (current.getSucc() != null && current.getSucc().getSucc() == null){
+                                current.disconnectSucc();
+                                last = current;
+                            }
+                        }
+
+                    }
+                }else{
+
+                }
+                current = current.getSucc();
+            }
+        }
     }
 }
 

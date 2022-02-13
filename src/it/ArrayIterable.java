@@ -1,9 +1,9 @@
-package Klasur;
+package it;
+
 import java.util.Iterator;
 
-
-//public class ArrayIterable implements Iterable{
-  /*  private int[] arr;
+public class ArrayIterable implements Iterable{
+    private int[] arr;
     public ArrayIterable(int[] p){
         arr = p;
     }
@@ -27,5 +27,5 @@ import java.util.Iterator;
             index++;
             return value;
         }
-    }*/
-//}
+    }
+}

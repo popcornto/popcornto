@@ -1,8 +1,5 @@
 package Iterator;
 
-import Klasur.Comparable;
-import Klasur.Iterable;
-
 
 public class IteratorTest
 {

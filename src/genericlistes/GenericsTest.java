@@ -13,11 +13,7 @@ public class GenericsTest
         ints.add("2");
         ints.add("2");
         ints.add("9"); //dellastSucc
-        ints.add("3");
-        ints.add("3");
-        ints.add("3");
-        ints.add("3");
-        ints.add("3");
+
         //ints.showAll();
         DoublyLinkedList<String> intsm = new DoublyLinkedList<>();
         intsm.add("3");
@@ -55,8 +51,10 @@ public class GenericsTest
         //System.out.println(ints.unequals(intsm));
         //ints.pack();
         ints.showAll();
-        System.out.println(ints.cutRange(5, ints.size()-1));
+        ints.removeUnequalToFirst();
         ints.showAll();
+        //System.out.println(ints.cutRange(5, ints.size()-1));
+        //ints.showAll();
     }
     
     public static void test()
