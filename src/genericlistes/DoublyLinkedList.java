@@ -398,5 +398,180 @@ public class DoublyLinkedList<T> {
         }
         return result / 2;
     }
+
+    public int longestSequence() {
+        if (!isEmpty()) {
+            int longest = 1;
+            int tempLongest = 1;
+            int count = 1;
+            Element current = first;
+            while (current != null && current.hasSucc()) {
+                if (current.getContent().equals(current.getSucc().getContent())) {
+                    count++;
+                } else if (!current.getContent().equals(current.getSucc().getContent())) {
+                    count = 1;
+                }
+                tempLongest = count;
+                if (tempLongest > longest) {
+                    longest = tempLongest;
+                }
+                current = current.getSucc();
+            }
+            return longest;
+        } else {
+            return 0;
+        }
+    }
+
+    public boolean allEqual(DoublyLinkedList<T> d) {
+        if (!isEmpty()) {
+            Element c1 = first;
+            Element c2 = d.first;
+            while (c1 != null && c2 != null && c1.getContent().equals(c2.getContent())) {
+                if (c1.getContent().equals(d.last.getContent()) && c2.getContent().equals(last.getContent())) {
+                    return true;
+                }
+                c1 = c1.getSucc();
+                c2 = c2.getSucc();
+            }
+        }
+        return false;
+    }
+
+    public void moveToHead(int n) {
+        if (!isEmpty()) {
+            Element current = last;
+            while (n >= 0 && current != null) {
+                System.out.println(current.getContent().toString());
+                current = current.getPred();
+                n--;
+            }
+            Element currenttemp = current;
+            currenttemp.disconnectPred();
+            current.disconnectSucc();
+            last = current;
+            Element start = first;
+            while (currenttemp != null) {
+                currenttemp = currenttemp.getSucc();
+            }
+            while (currenttemp != null) {
+                start.connectAsPred(currenttemp);
+                currenttemp = currenttemp.getPred();
+            }
+
+
+        }
+    }
+
+    public boolean unequals(DoublyLinkedList param) {
+        if (!isEmpty() && !param.isEmpty()) {
+            Element ref1 = first;
+            Element ref2 = param.first;
+            if (size() > param.size()) {
+                while (ref1 != null && ref2 != null && !ref1.getContent().equals(ref2.getContent())) {
+                    if (!last.getContent().equals(ref2) && !param.last.getContent().equals(ref1)) {
+                        return true;
+                    }
+                    ref1 = ref1.getSucc();
+                    ref2 = ref2.getSucc();
+                }
+            }
+        }
+        return false;
+    }
+
+    public void pack() {
+        Element current = first;
+        while (current != null) {
+            int count = 1;
+            Element currenttemp = current.getSucc();
+            while (currenttemp != null && currenttemp.getContent().equals(currenttemp.getSucc().getContent())) {
+                count++;
+                current.disconnectSucc();
+                currenttemp = currenttemp.getSucc();
+                current = current.getSucc();
+            }
+            current = current.getSucc();
+        }
+    }
+
+    /*
+        public DoublyLinkedList middel(int n) {
+            if (!isEmpty()){
+                DoublyLinkedList newList = new DoublyLinkedList();
+                Element current = first;
+                int half = size()/2;
+                if (size() < n+2 ){
+                    throw new IllegalStateException();
+                }else{
+                    if (size() % 2 == 0){
+                        half++;
+                    }
+
+                    while (current != null && half > 0 ){
+                        current = current.getSucc();
+                    }
+                }
+
+
+
+
+            }*/
+    public boolean cutRange(int pos1, int pos2) {
+        if (pos1 >= 0 && pos1 < size() && pos2 >= 0 && pos2 < size()) {
+            if (pos1 > pos2) {
+                int posH = pos1;
+                pos1 = pos2;
+                pos2 = posH;
+            }
+            int count = 0;
+            Element delFirst;
+            Element delLast;
+            Element current = first;
+            while (count != pos1) {
+                count++;
+                current = current.getSucc();
+            }
+            delFirst = current;
+            while (count != pos2) {
+                count++;
+                current = current.getSucc();
+            }
+            delLast = current;
+            boolean countdeleted = false;
+            if (pos1 + 1 < pos2) {
+                if (delFirst.getPred() != null && delLast.getSucc() != null) {
+                    Element delFirstPred = delFirst.getPred();
+                    Element delLastSucc = delLast.getSucc();
+                    delFirstPred.disconnectSucc();
+                    delLastSucc.disconnectPred();
+                    delFirstPred.connectAsSucc(delLastSucc);
+                    countdeleted = true;
+                    size = size - (pos2 - pos1);
+                } else if (!delFirst.hasPred() && delLast.hasSucc()) {
+                    Element delLastSucc = delLast.getSucc();
+                    delLastSucc.disconnectPred();
+                    first = delLastSucc;
+                    size = size - pos2;
+                    countdeleted = true;
+                } else if (delFirst.getPred() != null && !delLast.hasSucc()) {
+                    Element delFirstPred = delFirst.getPred();
+                    delFirstPred.disconnectSucc();
+                    last = delFirstPred;
+                    size = size - pos2;
+                    countdeleted = true;
+                } else if (!delFirst.hasPred() && !delLast.hasSucc()) {
+                    first = last = null;
+                    size = 0;
+                    countdeleted = true;
+                }
+            }
+            if (countdeleted) {
+                return countdeleted;
+            }
+        }
+        return false;
+    }
 }
+
 

@@ -1,6 +1,6 @@
-package genericBst;
+package Klasur;
 
-public class Student extends Comparable<Student>
+public class Student implements Comparable<Student>
 {
     private String name;
     private String subject;
@@ -33,12 +33,10 @@ public class Student extends Comparable<Student>
         return registrationNo;
     }
 
-    public boolean equals(Student other){
-        return getRegistrationNo() == other.getRegistrationNo();
-    }
-
+    @Override
     public int compareTo( Student s )
     {
         return getRegistrationNo() - s.getRegistrationNo();
     }
+    
 }

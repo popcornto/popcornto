@@ -1,6 +1,80 @@
-package genericBst;
+package Klasur;
 
-public class BinarySearchTree<T extends Comparable<T>> {
+import genericBst.Student;
+
+public class BinarySearchTree<T extends Comparable<T>>
+        implements Iterable<T> {
+    // --- Loesungen ---
+
+    private class PreOrderIterator implements Iterator<T> {
+        private Stack<BinarySearchTree<T>> nodes;
+
+        public PreOrderIterator() {
+            nodes = new Stack<BinarySearchTree<T>>();
+            if (!isEmpty()) {
+                nodes.push(BinarySearchTree.this);
+            }
+        }
+
+        public boolean hasNext() {
+            return !nodes.isEmpty();
+        }
+
+        public T next() {
+            if (hasNext()) {
+                BinarySearchTree<T> result = nodes.pop();
+                if (!result.rightChild.isEmpty()) {
+                    nodes.push(result.rightChild);
+                }
+                if (!result.leftChild.isEmpty()) {
+                    nodes.push(result.leftChild);
+                }
+                return result.getContent();
+            } else {
+                throw new IllegalStateException();
+            }
+        }
+    }
+
+    public Iterator<T> preorderiterator() {
+        return new PreOrderIterator();
+    }
+
+    private class BreadthFirstIterator implements Iterator<T> {
+        private DoublyLinkedList<BinarySearchTree<T>> nodes;
+
+        public BreadthFirstIterator() {
+            nodes = new DoublyLinkedList<BinarySearchTree<T>>();
+            nodes.add(BinarySearchTree.this);
+        }
+
+        public boolean hasNext() {
+            return !nodes.isEmpty();
+        }
+
+        public T next() {
+            if (hasNext()) {
+                BinarySearchTree<T> result = nodes.removeFirst();
+                if (!result.leftChild.isEmpty()) {
+                    nodes.add(result.leftChild);
+                }
+                if (!result.rightChild.isEmpty()) {
+                    nodes.add(result.rightChild);
+                }
+                return result.getContent();
+            } else {
+                throw new IllegalStateException();
+            }
+        }
+    }
+
+    public Iterator<T> breadthfirstiterator() {
+        return new BreadthFirstIterator();
+    }
+
+
+    // --- Vorgaben ---
+
     private T content;
     private BinarySearchTree<T> leftChild, rightChild;
 
@@ -83,7 +157,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
-    private class StackBasedIterator extends Iterator<T> {
+    private class StackBasedIterator implements Iterator<T> {
         private Stack<BinarySearchTree<T>> nodes;
 
         public StackBasedIterator() {
@@ -119,100 +193,21 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return new StackBasedIterator();
     }
 
-    public int height() {
-        if (!isEmpty()) {
-            int Right = rightChild.height();
-            int Left = leftChild.height();
-            if (Left > Right) {
-                return Left + 1;
-            } else {
-                return Right + 1;
-            }
-        } else {
-            return 0;
-        }
+    public static void main(String[] args) {
+        genericBst.BinarySearchTree<genericBst.Student> students = new genericBst.BinarySearchTree<>();
+        genericBst.Student st = new genericBst.Student("E", "M", 8);
+        students.add(new genericBst.Student("C", "M", 4));
+        students.add(new Student("A", "Inf", 22));
+        students.add(st);
+        students.show();
+        //students.show();
+        //System.out.println(students.height());
+        //System.out.println(students.countNodes(0, 2));
+        //System.out.println(students.completeLevels());
+        System.out.println(students.onLevel(st, 2));
     }
 
-    public int sortedUpTo(int n) {
-        if (!isEmpty() && n > 0) {
-            if (size() > n) {
-                if (leftChild.isEmpty()) {
-                    System.out.println(getContent());
-                }
-                if (!leftChild.isEmpty()) {
-
-                    return leftChild.sortedUpTo(n);
-                } else {
-                    return rightChild.sortedUpTo(n);
-                }
-            } else {
-                if (!isEmpty()) {
-                    this.show();
-                }
-            }
-
-        }
-        return 0;
-    }
-
-    public int countNodes(int top, int bottom) {
-        if (top <= bottom && !isEmpty()) {
-            if (top < bottom) {
-                if (top < 0 && bottom < 1) {
-                    return 0;
-                } else {
-                    if (top >= 0 && bottom >= 1) {
-                        if (!isEmpty()) {
-                            return 1 + leftChild.countNodes(top - 1, bottom - 1) + rightChild.countNodes(top - 1, bottom - 1);
-                        } else {
-                            return leftChild.countNodes(top, bottom - 1) + rightChild.countNodes(top, bottom - 1);
-                        }
-                    }
-                }
-            }
-        }
-        return 0;
-    }
-
-    public int countNodesBetween(int top, int bottom) {
-        if (top <= bottom && !isEmpty()) {
-            if (top > 0) {
-                return leftChild.countNodesBetween(top - 1, bottom - 1) + rightChild.countNodesBetween(top - 1, bottom - 1);
-            } else {
-                if (bottom > 0) {
-                    return 1 + leftChild.countNodesBetween(top, bottom - 1) + rightChild.countNodesBetween(top, bottom - 1);
-                } else {
-                    return 1;
-
-                }
-            }
-        } else {
-            return 0;
-        }
-    }
-
-    public int completeLevels() {
-        if (isEmpty()) {
-            return 0;
-        } else {
-
-            int left = leftChild.completeLevels();
-            int right = rightChild.completeLevels();
-
-            if (left >= 1 && right >= 1) {
-                return 1 + left + right;
-            } else {
-                if (!rightChild.isEmpty() && !leftChild.isEmpty()) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }
-
-        }
-    }
-
-    public boolean onLevel(Student obj, int level) {
+    public boolean onLevel(T obj, int level) {
         if (!isEmpty() && level >= 0) {
             if (level == 0) {
                 if (getContent().equals(obj)) {
@@ -227,6 +222,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return false;
         }
     }
+
     public boolean rightComplete() {
         if (!isEmpty() || isLeaf()){
             return true;
@@ -242,14 +238,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return 0;
         }else{
             if (!isLeaf()){
-                return 1 + leftChild.shortest() + rightChild.shortest();
-            }else{
-               return 0 + leftChild.shortest() + rightChild.shortest();
+                return 0 + leftChild.shortest() + rightChild.shortest();
+            }else if (isLeaf()){
+                return 1+ leftChild.shortest() + rightChild.shortest();
             }
         }
+        return 1 + leftChild.shortest() + rightChild.shortest();
     }
 }
-
-
-
-
