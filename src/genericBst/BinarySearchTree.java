@@ -265,13 +265,56 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         return found;
     }
-    public boolean pathsCheck(T obj, T target, boolean found) {
-        if (!isEmpty()) {
+
+    public boolean completePath(){
+        if (isEmpty() || isLeaf()){
             return true;
         }else{
-            return false;
+            if (leftChild != null && rightChild != null){
+                 return leftChild.completePath() || rightChild.completePath();
+            }else{
+                return false || leftChild.completePath() && rightChild.completePath();
+            }
         }
     }
+
+    public boolean rightCompleteq(){
+        if (isEmpty() || isLeaf()){
+            return true;
+        }else{
+            if (!isLeaf()){
+                if (!rightChild.isEmpty()){
+                    return true && rightChild.rightCompleteq() && leftChild.rightCompleteq();
+                }else if (!isLeaf()){
+                    if (rightChild.isEmpty()){
+                        return false && rightChild.rightCompleteq() && leftChild.rightCompleteq();
+                    }
+
+                }
+            }
+        }
+        return leftChild.rightCompleteq() && rightChild.rightCompleteq();
+    }
+
+    public int shortestPath(){
+        if (isEmpty()){
+            return 0;
+        }else{
+            if (!isLeaf()){
+                return 1 + leftChild.shortestPath() + rightChild.shortestPath();
+            }else{
+                return 0 + leftChild.shortestPath() + rightChild.shortestPath();
+            }
+        }
+    }
+
+   /* public int onelevel(){
+        if (isEmpty()){
+            return 0;
+        }else{
+
+        }
+    }*/
 
 
     private class StackBasedIterator extends Iterator<T> {
@@ -305,6 +348,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
 
     }
+
 
 /*
 * public static void main(String[] args) {

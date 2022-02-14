@@ -16,14 +16,26 @@ public class IteratorTest {
         num.add(2);
         num.add(2);
         num.add(2);
-        num.add(4);
         num.add(2);
         num.add(2);
         num.add(0);
-        Iterable<Integer> it = num;
+
+        List<Integer> nums = new LinkedList<>();
+        nums.add(4);
+        nums.add(4);
+        nums.add(4);
+        nums.add(2);
+        nums.add(4);
+        nums.add(4);
+        nums.add(4);
+        nums.add(4);
+
+        Iterable<Integer> it = nums;
         System.out.println(size(intsmsad));
 
-        System.out.println(hasSmaller(num, new Integer(1)));
+        System.out.println(hasSmaller(nums, new Integer(1)));
+        System.out.println(quantity(nums, 2));
+        System.out.println(disjointed(num, nums));
 
 
     }
@@ -78,5 +90,27 @@ public class IteratorTest {
         }
     }
 
+    public static int quantity(Iterable<Integer> s, int w){
+        int q = 0;
+        for (Integer i : s) {
+            if (i == w){
+                q++;
+            }
+        }
+        return q;
+    }
+    public static <X> boolean disjointed(Iterable<X> p1, Iterable<X> p2){
+        Iterator<X> it1 = p1.iterator();
+        while(it1.hasNext()){
+            X item = it1.next();
+            Iterator<X> it2 = p2.iterator();
+            while(it2.hasNext()){
+                if (item.equals(it2.next())){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
 

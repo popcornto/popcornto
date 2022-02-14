@@ -8,6 +8,34 @@ public class DoublyLinkedList<T> {
         first = last = null;
         size = 0;
     }
+    public DoublyLinkedList(DoublyLinkedList list, int n){
+        if(list.size == n){
+            first = list.first;
+            last = list.last;
+            size = list.size;
+            list.last = list.first = null;
+        }if(list.size() > n){
+            Element current = list.first;
+            int counter = n;
+            while(counter > 0){
+                Element add = new Element(current.getContent());
+                if (isEmpty()){
+                    first = last = add;
+                    size++;
+                }else{
+                    Element current1 = first;
+                    current1.connectAsSucc(add);
+                    last = current1.getSucc();
+                    size++;
+                }
+                current = current.getSucc();
+                current.disconnectPred();
+                list.first = current;
+                list.size--;
+                counter--;
+            }
+        }
+    }
 
     public int size() {
         return size;
@@ -572,33 +600,287 @@ public class DoublyLinkedList<T> {
         }
         return false;
     }
-    public void removeUnequalToFirst(){
-        if (!isEmpty() && first.getContent() != null){
+
+    public void removeUnequalToFirst() {
+        if (!isEmpty() && first.getContent() != null) {
             Element current = first.getSucc();
-            while (current != null){
-                if (!first.getContent().equals(current.getContent())){
-                    if (current.getSucc() != null && current.getSucc().getSucc() != null){
-                        Element afternext = current.getSucc().getSucc();
-                        current.disconnectSucc();
-                        afternext.disconnectPred();
-                        current.connectAsSucc(afternext);
-                        current = current.getSucc();
-                    }else{
-                        if (!first.getContent().equals(current.getContent())){
-                            if (current.getSucc() != null && current.getSucc().getSucc() == null){
+            while (current != null) {
+                if (!first.getContent().equals(current.getContent())) {
+                    if (current.hasPred() && current.hasSucc()) {
+                        Element next = current.getSucc();
+                        Element pred = current.getPred();
+                        pred.disconnectSucc();
+                        pred.connectAsSucc(next);
+                        current = pred;
+                        size--;
+                    } else {
+                        if (!first.getContent().equals(current.getContent())) {
+                            if (!current.hasSucc()) {
                                 current.disconnectSucc();
                                 last = current;
+                                size--;
                             }
                         }
 
                     }
-                }else{
-
                 }
                 current = current.getSucc();
             }
         }
     }
+
+    public void delete(T p1, T p2) {
+
+        if (!isEmpty()) {
+
+            Element p1Index = first;
+
+            int countp1Index = 0;
+            while (p1Index != null && !p1Index.getContent().equals(p1)) {
+                p1Index = p1Index.getSucc();
+                countp1Index++;
+            }
+            Element p2Index = first;
+            int countp2Index = 0;
+            while (p2Index != null && !p2Index.getContent().equals(p2)) {
+                p2Index = p2Index.getSucc();
+                countp2Index++;
+            }
+            if (countp1Index > countp2Index) {
+                Element current = p2Index;
+                while (current != null && current.hasPred() && !current.getContent().equals(current.getPred().getContent())) {
+                    if (current.getSucc().hasSucc()) {
+                        Element succSucc = current.getSucc().getSucc();
+                        current.disconnectSucc();
+                        current.connectAsSucc(succSucc);
+                        current = current.getSucc();
+
+                    }
+                }
+
+            } else if (countp1Index < countp2Index) {
+                Element current = p1Index;
+                while (current != null && current.hasPred()) {
+                    if (current.hasSucc() && current.getSucc().hasSucc()) {
+                        if (current.getContent().equals(p2Index.getPred().getContent())) {
+                            Element succSucc = current.getSucc().getSucc();
+                            current.disconnectSucc();
+                            current.connectAsSucc(succSucc);
+                            current = current.getSucc();
+                            showAll();
+                        } else {
+                            current = current.getSucc();
+                        }
+                    } else {
+                        current = current.getSucc();
+                    }
+                }
+            }
+        }
+    }
+
+    public boolean notIn(T[] test) {
+        if (isEmpty() || test.length <= 0) {
+            return true;
+        } else {
+            Element current = first;
+            while (current != null) {
+                for (int i = 0; i < test.length; i++) {
+                    if (current.getContent().equals(test[i])) {
+                        return false;
+                    }
+                }
+                current = current.getSucc();
+            }
+        }
+        return true;
+    }
+
+    public void prepend(T[] toPrep) {
+        if (toPrep.length > 0) {
+            Element current = first;
+            for (int i = toPrep.length - 1; i >= 0; i--) {
+                Element add = new Element(toPrep[i]);
+                current.connectAsPred(add);
+                first = current.getPred();
+                current = current.getPred();
+                size++;
+
+            }
+
+        }
+    }
+
+    public DoublyLinkedList<T> sub(T p) {
+        DoublyLinkedList<T> newlist = new DoublyLinkedList<>();
+        Element current = first;
+        int countIndexoffirst = 0;
+        while (current != null && !current.getContent().equals(p)) {
+            current = current.getSucc();
+            countIndexoffirst++;
+        }
+        Element next = current.getSucc();
+        int countIndexofnext = 0;
+        while (next != null && !next.getContent().equals(p)) {
+            next = next.getSucc();
+            countIndexofnext++;
+        }
+
+        while (countIndexofnext > 0) {
+            if (current.getSucc().hasSucc()) {
+                Element currentsucctoadd = current.getSucc();
+
+                Element e = new Element(currentsucctoadd.getContent());
+                if (newlist.isEmpty()) {
+                    newlist.first = newlist.last = e;
+                } else {
+                    newlist.last.connectAsSucc(e);
+                    newlist.last = e;
+                }
+                newlist.size++;
+                Element currentsucc = current.getSucc().getSucc();
+
+
+                current.disconnectSucc();
+                current.connectAsSucc(currentsucc);
+                size--;
+                countIndexofnext--;
+            }
+        }
+        return newlist;
+    }
+
+    public void packs() {
+        Element current = first;
+        while (current != null) {
+
+            while (current.hasSucc() && current.getSucc().getContent().equals(current.getContent())) {
+
+                if (current.getSucc().hasSucc()) {
+                    Element newnext = current.getSucc().getSucc();
+                    current.disconnectSucc();
+                    current.connectAsSucc(newnext);
+                    size--;
+                } else if (!current.hasSucc()) {
+                    current.disconnectSucc();
+                    last = current;
+                    size--;
+                } else {
+                    current.disconnectSucc();
+                    last = current;
+                    size--;
+                }
+            }
+
+
+            current = current.getSucc();
+        }
+    }
+
+    public void reverse() {
+        Element up = first;
+        Element down = last;
+
+        for (int i = 0; i < size / 2; i++) {
+            if (i == 0) {
+                Element tempup = new Element(up.getContent());
+                Element tempdown = new Element(down.getContent());
+                up = up.getSucc();
+                up.disconnectPred();
+                up.connectAsPred(tempdown);
+                up = up.getPred();
+                first = up;
+                down = down.getPred();
+                down.disconnectSucc();
+                down.connectAsSucc(tempup);
+                down = down.getSucc();
+                last = down;
+                down = down.getPred();
+                up = up.getSucc();
+            } else {
+                Element tempup = new Element(up.getContent());
+                Element tempdown = new Element(down.getContent());
+                up = up.getSucc();
+                up.disconnectPred();
+                up.connectAsPred(tempdown);
+                up = up.getPred();
+                down = down.getPred();
+                down.disconnectSucc();
+                down.connectAsSucc(tempup);
+                down = down.getSucc();
+                down = down.getPred();
+            }
+        }
+    }
+
+    public void deleteNext(T content) {
+        Element current = first;
+        boolean found = false;
+        while (current != null) {
+            if (current.getContent().equals(content)) {
+                found = true;
+                break;
+            }
+            current = current.getSucc();
+        }
+        if (found) {
+            if (current.getSucc().hasSucc()) {
+                Element currentnext = current.getSucc().getSucc();
+                current.disconnectSucc();
+                current.connectAsSucc(currentnext);
+                size--;
+            } else {
+                current.disconnectSucc();
+                size--;
+            }
+        } else {
+
+        }
+    }
+
+    public int equalHead(DoublyLinkedList<T> other) {
+        if (!isEmpty() && !other.isEmpty()) {
+            int count = 0;
+            Element current = first;
+            Element othercurrent = other.first;
+
+            while (current != null && othercurrent != null) {
+                if (current.hasSucc() && othercurrent.hasSucc()) {
+                    if (current.getContent().equals(current.getSucc().getContent()) && othercurrent.getContent().equals(othercurrent.getSucc().getContent()) && current.getContent().equals(othercurrent.getContent()) && current.getSucc().getContent().equals(othercurrent.getSucc().getContent())) {
+                        count++;
+                    }
+                }
+                othercurrent = othercurrent.getSucc();
+                current = current.getSucc();
+            }
+            return count;
+        } else {
+            return 0;
+        }
+
+    }
+
+    public boolean asymmetric(){
+        Element up = first;
+        Element down = last;
+
+        for (int i = 0; i < size/2; i++) {
+            if (up.getContent().equals(down.getContent())){
+                return false;
+            }else{
+                up = up.getSucc();
+                down = down.getPred();
+            }
+        }
+        return true;
+    }
+
+
 }
+
+
+
+
+
 
 

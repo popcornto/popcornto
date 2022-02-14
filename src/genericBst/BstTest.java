@@ -13,9 +13,17 @@ public class BstTest
         Student neun = new Student( "C", "M", 9 );
         Student six = new Student( "E", "M", 6 );
         Student eight = new Student( "E", "M", 8 );
-        students.add( new Student( "A", "Inf", 4 ) );
+        Student four = new Student( "A", "Inf", 4 );
+        Student three = new Student( "E", "M", 3 );
+        Student five = new Student( "E", "M", 5 );
+        Student two = new Student( "E", "M", 2 );
+
+        students.add( five );
         students.add(ten);
-        students.add( new Student( "E", "M", 3 ) );
+        students.add(new Student( "E", "M", 11));
+        students.add(three);
+        students.add(four);
+        students.add(two);
         students.add( six);
         students.add( eight );
         students.add(neun);
@@ -30,12 +38,13 @@ public class BstTest
         //System.out.println(students.onLevel(st, 1));
         //System.out.println(students.shortest());
         //System.out.println(students.deleteLeavesAbove(3));
-        students.allInner(lsist);
+        /*students.allInner(lsist);
         System.out.println(lsist.toArray().toString());
         for (Object elemt:lsist.toArray()
              ) {
             System.out.println(elemt);
-        }
+        }*/
+        System.out.println(students.shortestPath());
         //System.out.println(students.pathCheck(  six , s, false));
         //System.out.println(students.pathsCheck(six,s,true));
 

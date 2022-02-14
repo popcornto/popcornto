@@ -7,17 +7,26 @@ public class GenericsTest
     public static void main(String[] args)
     {
         DoublyLinkedList<String> ints = new DoublyLinkedList<>();
+        String four = "4";
+        String two = "2";
+        ints.add("3");
         ints.add("2");
-        ints.add("2"); //delFirstpred
-        ints.add("2");
-        ints.add("2");
-        ints.add("2");
-        ints.add("9"); //dellastSucc
+        ints.add("36");
+        ints.add("37");
+        ints.add("4");
+        ints.add("4");
+        DoublyLinkedList<String> ites = new DoublyLinkedList<>(ints, 1);
+        ints.showAll();
+        ites.showAll();
+
+
+
 
         //ints.showAll();
+        String[] arr = {"11", "10", "13", "3"};
         DoublyLinkedList<String> intsm = new DoublyLinkedList<>();
         intsm.add("3");
-        intsm.add("3");
+        intsm.add("2");
         intsm.add("3");
         intsm.add("3");
         intsm.add("3");
@@ -50,9 +59,14 @@ public class GenericsTest
         //ints.showAll();
         //System.out.println(ints.unequals(intsm));
         //ints.pack();
-        ints.showAll();
-        ints.removeUnequalToFirst();
-        ints.showAll();
+        //ints.showAll();
+        //ints.removeUnequalToFirst();
+        //ints.delete("3", four);
+        //System.out.println(ints.notIn(arr));
+        //ints.packs();
+        //ints.reverse();
+        //System.out.println(ints.asymmetric());
+        //intsm.showAll();
         //System.out.println(ints.cutRange(5, ints.size()-1));
         //ints.showAll();
     }
