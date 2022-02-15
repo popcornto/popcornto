@@ -1,8 +1,5 @@
 package Arrrays;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 public class Array {
     public static int countNegatives(int[] arr) {
         int count = 0;
@@ -16,7 +13,7 @@ public class Array {
     public static void main(String[] args) {
         int[] asdffg = {8, 6, 88, 4, 3, 5};
         int[] aref = {80, 2, 0};
-        int[] ass = {66, 8, 99, 6, 6, 6, 6, 6, 6, 6, 6, 1, 77, 2, 4};
+        int[] ass = {66, 8, 99, 2, 3, 6, 6, 6, 6, 6, 6, 1, 77, 2, 4};
         //System.out.println(sumUpNegatives(new int[]{-1,1,-2,3,-4}));
         //System.out.println(countNegatives(new int[]{1,6,9,5,4,6,8,5,3}));
         //System.out.println(maximum(new int[]{1,6,9,3,6,2,4}));
@@ -47,6 +44,7 @@ public class Array {
         //Arrays.asList(aref);
         //System.out.println(between(aref, 2));
         System.out.println(elemsBetween(asdffg));
+        System.out.println(distance(ass, 2));
     }
 
     //System.out.println(doubleifcontainspositive(new int[]{1,6,3,3,6,2,4}));
@@ -378,5 +376,19 @@ public class Array {
             }
         }
         return count;
+    }
+
+    public static int distance(int[] arr, int x) {
+        int count = 0;
+        for (int i = 1; i < arr.length-1; i++) {
+            if (x == arr[i]){
+                count++;
+            }
+        }
+        if (count >= 2){
+            return count;
+        }else{
+            return -1;
+        }
     }
 }

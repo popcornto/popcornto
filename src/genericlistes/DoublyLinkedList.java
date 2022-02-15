@@ -875,6 +875,121 @@ public class DoublyLinkedList<T> {
         return true;
     }
 
+    public void deleteNexts(T content){
+        Element current = first;
+        boolean exists = false;
+        while(current != null){
+            if (current.getContent().equals(content)){
+                exists = true;
+                break;
+            }
+            current = current.getSucc();
+        }
+
+        if (exists){
+           if (current.hasSucc() && current.getSucc().hasSucc()) {
+               current.connectAsSucc(current.getSucc().getSucc());
+               size--;
+           }else{
+               if (current.getSucc() == last){
+                   current.disconnectSucc();
+                   last = current;
+                   size--;
+               }
+           }
+        }
+
+    }
+
+    public DoublyLinkedList<T> singelton(int n){
+        DoublyLinkedList<T> newlist = new DoublyLinkedList<>();
+        Element current = first;
+        if (size > n ){
+        while (current != null && n > 0){
+            n--;
+          current = current.getSucc();
+        }
+        Element toAdd = new Element(current.getContent());
+        newlist.first = newlist.last = toAdd;
+        return newlist;
+        }else {
+            throw new RuntimeException();
+        }
+    }
+
+    public void inForntof(T test, T cont){
+        boolean exists = false;
+        Element current = first;
+        while(current != null){
+            if (current.getContent().equals(test)){
+                exists = true;
+                break;
+            }
+            else{
+                current = current.getSucc();
+            }
+        }
+        if (exists){
+            Element current1 = first;
+            while(current1 != null){
+                if (current1.getContent().equals(test)){
+                    break;
+                }
+                current1 = current1.getSucc();
+            }
+            Element toAdd = new Element(cont);
+            if (current1.hasSucc()){
+                Element currsucc1 = current1.getSucc();
+                current1.disconnectSucc();
+                current1.connectAsSucc(toAdd);
+                current1 = current1.getSucc();
+                current1.connectAsSucc(currsucc1);
+                size++;
+            }else{
+                current1.connectAsSucc(toAdd);
+                last = current1.getSucc();
+                size++;
+            }
+        }
+    }
+    public void deleteRepeated(){
+        Element c1 = first;
+        while(c1 != null){
+            Element c2 = first;
+            while(c2 != null){
+                int count = 0;
+                while (c2.getContent().equals(c1.getContent())){
+                    count++;
+                }
+                if (count > 1){
+                    Element c3 = first;
+                    while(c3 != null){
+                        if (c3.getContent().equals(c1.getContent())){
+                            if (c1 == first){
+                                c1 = c1.getSucc();
+                                first = c1;
+                                size--;
+                            }else if (c1.hasSucc()){
+                                Element next = c1.getSucc();
+                                c1 = c1.getPred();
+                                c1.disconnectSucc();
+                                c1.connectAsSucc(next);
+                                size--;
+                            }else if(c1 == last){
+                                c1 = c1.getPred();
+                                c1.disconnectSucc();
+                                last = c1;
+                                size--;
+                            }
+                        }
+                        c3 = c3.getSucc();
+                    }
+                }
+                c2 = c2.getSucc();
+            }
+        }
+    }
+
 
 }
 

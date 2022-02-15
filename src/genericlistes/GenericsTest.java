@@ -15,9 +15,9 @@ public class GenericsTest
         ints.add("37");
         ints.add("4");
         ints.add("4");
-        DoublyLinkedList<String> ites = new DoublyLinkedList<>(ints, 1);
+        //DoublyLinkedList<String> ites = new DoublyLinkedList<>(ints, 1);
         ints.showAll();
-        ites.showAll();
+        //ites.showAll();
 
 
 
@@ -69,6 +69,11 @@ public class GenericsTest
         //intsm.showAll();
         //System.out.println(ints.cutRange(5, ints.size()-1));
         //ints.showAll();
+        //ints.inForntof("36", "6");
+        //ints.deleteRepeated();
+        //ints.deleteNexts("2");
+        ints.singelton(3).showAll();
+        ints.showAll();
     }
     
     public static void test()
@@ -95,6 +100,5 @@ public class GenericsTest
             sum += it.next();
         }
         System.out.println( "sum: " + sum );
-
     }
 }

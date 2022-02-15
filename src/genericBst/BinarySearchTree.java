@@ -249,44 +249,43 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     public boolean pathCheck(T obj, T target, boolean found) {
         if (!isEmpty()) {
-            if (!content.equals(target)) {
-                if (content.equals(obj)) {
-                    found = true;
-                    return found;
-                } else if (content.equals(target) && content.equals(obj)) {
-                    found = true;
-                    return found;
-                } else {
-                    return found || leftChild.pathCheck(obj, target, false) || rightChild.pathCheck(obj, target, false);
-                }
+            if (content.equals(target)) {
+                return leftChild.pathCheck(obj, target, true) || rightChild.pathCheck(obj, target, true);
             }
-        } else {
-            return found;
+            if (found) {
+                if (content.equals(obj)) {
+                    return true;
+                } else if (!content.equals(obj)) {
+                    return false;
+                }
+            } else {
+                return leftChild.pathCheck(obj, target, found) || rightChild.pathCheck(obj, target, found);
+            }
         }
-        return found;
+        return false;
     }
 
-    public boolean completePath(){
-        if (isEmpty() || isLeaf()){
+    public boolean completePath() {
+        if (isEmpty() || isLeaf()) {
             return true;
-        }else{
-            if (leftChild != null && rightChild != null){
-                 return leftChild.completePath() || rightChild.completePath();
-            }else{
+        } else {
+            if (leftChild != null && rightChild != null) {
+                return leftChild.completePath() || rightChild.completePath();
+            } else {
                 return false || leftChild.completePath() && rightChild.completePath();
             }
         }
     }
 
-    public boolean rightCompleteq(){
-        if (isEmpty() || isLeaf()){
+    public boolean rightCompleteq() {
+        if (isEmpty() || isLeaf()) {
             return true;
-        }else{
-            if (!isLeaf()){
-                if (!rightChild.isEmpty()){
+        } else {
+            if (!isLeaf()) {
+                if (!rightChild.isEmpty()) {
                     return true && rightChild.rightCompleteq() && leftChild.rightCompleteq();
-                }else if (!isLeaf()){
-                    if (rightChild.isEmpty()){
+                } else if (!isLeaf()) {
+                    if (rightChild.isEmpty()) {
                         return false && rightChild.rightCompleteq() && leftChild.rightCompleteq();
                     }
 
@@ -296,17 +295,53 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return leftChild.rightCompleteq() && rightChild.rightCompleteq();
     }
 
-    public int shortestPath(){
-        if (isEmpty()){
+
+    public int shortestPath() {
+        if (isEmpty()) {
             return 0;
-        }else{
-            if (!isLeaf()){
+        } else {
+            if (!isLeaf()) {
                 return 1 + leftChild.shortestPath() + rightChild.shortestPath();
-            }else{
+            } else {
                 return 0 + leftChild.shortestPath() + rightChild.shortestPath();
             }
         }
     }
+
+
+    public int inDiffOut() {
+        if (isEmpty()) {
+            return 0;
+        } else {
+            if (isLeaf()) {
+                return -1 + leftChild.inDiffOut() + rightChild.inDiffOut();
+            } else if (!isEmpty() && !isLeaf()) {
+                return 1 + leftChild.inDiffOut() + rightChild.inDiffOut();
+            }
+        }
+
+        return 0;
+    }
+
+    public int levelOf(T obj) {
+        if (isEmpty()) {
+            return -1;
+        } else {
+            int right = rightChild.levelOf(obj);
+            int left = leftChild.levelOf(obj);
+            if (content.equals(obj)){
+                return 1 + rightChild.levelOf(obj) + leftChild.levelOf(obj);
+            }
+            if (!content.equals(obj)) {
+                return 1 + rightChild.levelOf(obj) + leftChild.levelOf(obj);
+            } else {
+                return 0 + rightChild.levelOf(obj) + leftChild.levelOf(obj);
+            }
+
+        }
+    }
+
+
 
    /* public int onelevel(){
         if (isEmpty()){

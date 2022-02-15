@@ -24,9 +24,8 @@ public class BstTest
         students.add(three);
         students.add(four);
         students.add(two);
-        students.add( six);
-        students.add( eight );
-        students.add(neun);
+
+
 
         List<Student> lsist = new LinkedList<>();
 
@@ -44,9 +43,10 @@ public class BstTest
              ) {
             System.out.println(elemt);
         }*/
-        System.out.println(students.shortestPath());
+        //System.out.println(students.pathCheck(four, five, false));
+        //System.out.println(students.inDiffOut());
         //System.out.println(students.pathCheck(  six , s, false));
         //System.out.println(students.pathsCheck(six,s,true));
-
+        System.out.println(students.levelOf(four));
     }
 }
