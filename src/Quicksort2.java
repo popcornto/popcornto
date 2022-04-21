@@ -63,7 +63,7 @@ public class Quicksort2 {
 
     public static void main(String[] args) {
         float median = 0;
-        for (int j = 0; j < 5; j++) {
+        for (int j = 0; j < 20; j++) {
 
 
             int a = CalculatePower(2, 24);
